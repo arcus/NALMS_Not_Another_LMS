@@ -25,8 +25,8 @@ section_name=$(head -1 $SECTION)
 tail +2 $SECTION| head -1 | while read line 
 do
 field_name=$line"_"$pathway
-#module_name= make the module name be the actual module name
-link_title="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank> $line </a>"
+module_name=$(grep $line module_list.txt | sed "s/^[^ ]* //")
+link_title="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank> $module_name </a>"
 action_tag="@IF([current-instance]=1,@DEFAULT='0', @SETVALUE='[$field_name:value][last-instance]')."
    echo $field_name,$pathway,$section_name,radio,\"$link_title\",$radio_buttons,,,,,,,,RH,,,,\"$action_tag\" >> $instrument_file
 done
@@ -35,8 +35,8 @@ done
 tail +3 $SECTION | while read line 
 do
 field_name=$line"_"$pathway
-#module_name= make the module name be the actual module name
-link_title="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank> $line </a>"
+module_name=$(grep $line module_list.txt | sed "s/^[^ ]* //")
+link_title="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank> $module_name </a>"
 action_tag="@IF([current-instance]=1,@DEFAULT='0', @SETVALUE='[$field_name:value][last-instance]')."
    echo $field_name,$pathway,,radio,\"$link_title\",$radio_buttons,,,,,,,,RH,,,,\"$action_tag\" >> $instrument_file
 done
