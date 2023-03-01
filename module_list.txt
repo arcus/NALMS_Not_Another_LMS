@@ -1,0 +1,43 @@
+bash_103_combining_commands Bash: Combining Commands
+bash_command_line_101 Bash / Command Line 101
+bash_command_line_102 Bash: Searching and Organizing Files
+bash_conditionals_loops Bash: Conditionals and Loops
+bash_scripts Bash: Reusable Scripts
+citizen_science Citizen Science
+data_management_basics Research Data Management Basics
+data_storage_models Types of Data Storage Solutions
+data_visualization_in_ggplot2 Data Visualization in ggplot2
+data_visualization_in_open_source_software Data Visualization in Open Source Software
+data_visualization_in_seaborn Data Visualization in seaborn
+database_normalization Database Normalization
+demystifying_geospatial_data Demystifying Geospatial Data
+demystifying_python Demystifying Python
+demystifying_sql Demystifying SQL
+directories_and_file_paths Directories and File Paths
+elements_of_maps The Elements of Maps
+executing_scripts Module Title
+geocode_lat_long Encoding Geospatial Data: Latitude and Longitude
+git_creation_and_tracking Creating a Git Repository
+git_history_of_project Exploring the History of your Git Repository
+git_intro Intro to Version Control
+git_setup_mac_and_linux Setting Up Git on Mac and Linux
+git_setup_windows Setting Up Git on Windows
+how_to_troubleshoot How to Troubleshoot
+learning_to_learn Learning to Learn Data Science
+omics_orientation Omics Orientation
+pandas_transform Transform Data with pandas
+python_basics_writing_python_code Python Basics: Writing Python Code
+python_practice Python Practice
+r_basics_introduction R Basics: Introduction
+r_basics_transform_data R Basics: Transforming Data With dplyr
+r_basics_visualize_data R Basics: Visualizing Data With ggplot2
+r_missing_values Missing Values in R
+r_practice R Practice
+r_reshape_long_wide Reshaping Data in R: Long and Wide Data
+reproducibility Reproducibility, Generalizability, and Reuse
+sql_basics SQL Basics
+sql_intermediate SQL, Intermediate Level
+sql_joins SQL Joins
+statistical_tests Statistical Tests in Open Source Software
+tidy_data Tidy Data
+using_redcap_api Using the REDCap API
