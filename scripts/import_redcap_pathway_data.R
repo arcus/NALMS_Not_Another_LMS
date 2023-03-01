@@ -1,8 +1,5 @@
 source(here::here("secrets", "secrets.R")) # get the API tokens
-
-dataframe_as_string <- function(df){
-  paste(utils::capture.output(data.table::fwrite(df)), collapse = "\n")
-}
+source(here::here("scripts", "functions.R")) # get custom functions for this project
 
 # get the record_id, name, email, and assigned pathway from Pipeline
 url <- "https://redcap.chop.edu/api/"
@@ -76,7 +73,6 @@ basic_info <- as.data.frame(redcap_matrix) |>
 # the name of each form should be the capitalized pathway color and "Pathway", e.g. "Red Pathway"
 pathway_form_names <- data.frame(pathway = pathways) |> 
   dplyr::mutate(redcap_repeat_instrument = paste0(pathway, "_pathway"))
-#  dplyr::mutate(redcap_repeat_instrument = paste(paste0(toupper(substring(pathway, 1, 1)), substring(pathway, 2)), "Pathway"))
 # add form name to pipeline data frame so we can pull it in 
 pipeline_this_wave <- dplyr::left_join(pipeline_this_wave, pathway_form_names, by = "pathway")
 
