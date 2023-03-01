@@ -15,7 +15,6 @@ demystifying_python Demystifying Python
 demystifying_sql Demystifying SQL
 directories_and_file_paths Directories and File Paths
 elements_of_maps The Elements of Maps
-executing_scripts Module Title
 geocode_lat_long Encoding Geospatial Data: Latitude and Longitude
 git_creation_and_tracking Creating a Git Repository
 git_history_of_project Exploring the History of your Git Repository
