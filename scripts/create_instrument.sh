@@ -1,5 +1,6 @@
 #############################
 # Create the isntrument csv for a given pathway
+# This script takes a single arguement, the pathway name, e.g. test_color
 #############################
 
 ### which pathway are we creating the instrument csv for?
