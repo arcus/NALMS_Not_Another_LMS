@@ -84,10 +84,13 @@ pathway_forms <- as.data.frame(redcap_matrix) |>
                 pathway = pipeline_this_wave$pathway) |> # pathway here is temporary
   # for each pathway, put in "not done" (0) for each module in that pathway
   # pivot longer to pull the pathway name out of the module field name
-  tidyr::pivot_longer(cols = dplyr::ends_with(pathways)) |> 
-  tidyr::extract(col = name, into = c("module", "mod_path"), regex = "(.*)_([[:lower:]]+)") |> 
+  tidyr::pivot_longer(cols = dplyr::starts_with(pathways)) |> 
+  # extract the path associated with each module field from the module name itself
+  tidyr::extract(col = name, into = c("mod_path", "module"), regex = "([[:lower:]]+)_(.*)") |> 
+  # put in 2 (complete) for the "color_pathway_complete" field that matches participant's pathway
   # put in 0 (not started) for all modules that match the participant's pathway
-  dplyr::mutate(value = ifelse(pathway == mod_path, 0, NA)) |> 
+  dplyr::mutate(value = ifelse(pathway == mod_path & module == "pathway_complete", 2, 
+                               ifelse(pathway == mod_path, 0, NA))) |> 
   # collapse the module and module path fields back together
   tidyr::unite(col = "name", module, mod_path, sep="_") |> 
   # pivot back wider to original formatting
