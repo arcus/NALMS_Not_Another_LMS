@@ -70,7 +70,7 @@ basic_info <- as.data.frame(redcap_matrix) |>
                 basic_info_complete = 2)
 
 
-# the name of each form should be the capitalized pathway color and "Pathway", e.g. "Red Pathway"
+# the name of each form should be the capitalized pathway color and "Pathway", e.g. "red_pathway"
 pathway_form_names <- data.frame(pathway = pathways) |> 
   dplyr::mutate(redcap_repeat_instrument = paste0(pathway, "_pathway"))
 # add form name to pipeline data frame so we can pull it in 
@@ -98,7 +98,6 @@ pathway_forms <- as.data.frame(redcap_matrix) |>
   dplyr::select(all_of(redcap_fields)) |> # make sure all of the columns are in the right order
   dplyr::mutate(pathway = NA) # get rid of temporary pathway values
 
-# [form]_complete = 2
 
 # rbind basic_info form and pathway forms together, then sort on record_id
 redcap_import <- rbind(basic_info, pathway_forms) |> 
