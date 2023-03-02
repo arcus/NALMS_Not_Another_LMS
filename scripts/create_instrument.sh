@@ -1,5 +1,5 @@
 #############################
-# Create the isntrument csv for a given pathway
+# Create the instrument csv for a given pathway
 # This script takes a single arguement, the pathway name, e.g. test_color
 #############################
 
@@ -25,7 +25,7 @@ section_name=$(head -1 $SECTION)
 
 tail +2 $SECTION| head -1 | while read line 
 do
-field_name=$line"_"$pathway
+field_name=$pathway"_"$line
 module_name=$(grep $line module_list.txt | sed "s/^[^ ]* //")
 field_text="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank> $module_name </a>"
 action_tag="@IF([current-instance]=1,@DEFAULT='0', @SETVALUE='[$field_name:value][last-instance]')."
@@ -36,7 +36,7 @@ done
 
 tail +3 $SECTION | while read line 
 do
-field_name=$line"_"$pathway
+field_name=$pathway"_"$line
 module_name=$(grep $line module_list.txt | sed "s/^[^ ]* //")
 field_text="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank> $module_name </a>"
 action_tag="@IF([current-instance]=1,@DEFAULT='0', @SETVALUE='[$field_name:value][last-instance]')."
