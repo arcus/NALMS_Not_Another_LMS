@@ -35,7 +35,7 @@ do
 
 tail +2 $SECTION | while read line 
 do
-field_name=$line"_"$pathway
+field_name=$pathway"_"$line
 module_title=$(grep $line module_title.txt | sed "s/^[^ ]* //")
 field_text="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank>$module_title</a>"
 module_time=$(grep $line module_time.txt | sed "s/^[^ ]* //")

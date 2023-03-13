@@ -9,13 +9,13 @@
 <tr>
 <td><a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/reproducibility/reproducibility.md target=_blank>Reproducibility, Generalizability, and Reuse</a></td>
 <td>1 hour</td>
-<td>[reproducibility_test_color:label][last-instance]
+<td>[test_color_reproducibility:label][last-instance]
 </td>
 </tr>
 <tr>
 <td><a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/citizen_science/citizen_science.md target=_blank>Citizen Science</a></td>
 <td>45 minutes</td>
-<td>[citizen_science_test_color:label][last-instance]
+<td>[test_color_citizen_science:label][last-instance]
 </td>
 </tr>
 <tr>
@@ -26,13 +26,13 @@
 <tr>
 <td><a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/learning_to_learn/learning_to_learn.md target=_blank>Learning to Learn Data Science</a></td>
 <td>20 minutes</td>
-<td>[learning_to_learn_test_color:label][last-instance]
+<td>[test_color_learning_to_learn:label][last-instance]
 </td>
 </tr>
 <tr>
 <td><a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/how_to_troubleshoot/how_to_troubleshoot.md target=_blank>How to Troubleshoot</a></td>
 <td>30 minutes</td>
-<td>[how_to_troubleshoot_test_color:label][last-instance]
+<td>[test_color_how_to_troubleshoot:label][last-instance]
 </td>
 </tr>
 <tr>
@@ -43,13 +43,13 @@
 <tr>
 <td><a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/bash_command_line_101/bash_command_line_101.md target=_blank>Bash / Command Line 101</a></td>
 <td>40 minutes</td>
-<td>[bash_command_line_101_test_color:label][last-instance]
+<td>[test_color_bash_command_line_101:label][last-instance]
 </td>
 </tr>
 <tr>
 <td><a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/bash_command_line_102/bash_command_line_102.md target=_blank>Bash: Searching and Organizing Files</a></td>
 <td>30 minutes</td>
-<td>[bash_command_line_102_test_color:label][last-instance]
+<td>[test_color_bash_command_line_102:label][last-instance]
 </td>
 </tr>
 </tbody>
