@@ -28,18 +28,21 @@ do
     echo "<tr>
     <td><strong>$section_name</strong></td>
     <td></td>
+    <td></td>
     </tr>" >> $asi_location
 
 ### Include links to each modules within the section
 
 tail +2 $SECTION | while read line 
 do
-field_name=$line"_"$pathway
-module_name=$(grep $line module_list.txt | sed "s/^[^ ]* //")
-field_text="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank>$module_name</a>"
+field_name=$pathway"_"$line
+module_title=$(grep $line module_title.txt | sed "s/^[^ ]* //")
+field_text="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank>$module_title</a>"
+module_time=$(grep $line module_time.txt | sed "s/^[^ ]* //")
 
 echo "<tr>
 <td>$field_text</td>
+<td>$module_time</td>
 <td>[$field_name:label][last-instance]
 </td>
 </tr>" >> $asi_location

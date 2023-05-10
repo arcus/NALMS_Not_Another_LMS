@@ -6,6 +6,8 @@
 
 # Add a row for each module, this time the sample module is included
 
+# make module_title.txt 
+
 for FOLDER in *
 do
   if [[ -s $FOLDER/$FOLDER.md && "$FOLDER" != "a_sample_module_template" ]]       ## Only do this for folders that have a real module inside them.
@@ -17,3 +19,15 @@ do
   fi
 done
 
+# make module_title.txt
+
+for FOLDER in *
+do
+  if [[ -s $FOLDER/$FOLDER.md && "$FOLDER" != "a_sample_module_template" ]]       ## Only do this for folders that have a real module inside them.
+    then
+      ROW=$FOLDER
+      ROW+=" `grep -m 1 estimated_time: $FOLDER/$FOLDER.md | sed "s/^[^ ]* //" | sed "s/^[ ]* //" | tr -dc '[:print:]' `"  # Pull the YAML entry but remove excess white space at the front, as well as any unprintable characters or commas
+
+      echo $ROW 
+  fi
+done
