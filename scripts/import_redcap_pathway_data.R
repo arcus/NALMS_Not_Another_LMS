@@ -1,9 +1,20 @@
-source(here::here("secrets", "secrets.R")) # get the API tokens
+# This script pulls down learner information from Pipeline
+# and builds an import file for NALMS that includes the Pipeline fields
+# as well as the first "instance" for each learner's pathway survey.
+# It fills in 0 (not started) for each of their assigned modules (leaving fields on all other pathways blank)
+# and puts in "complete" status for their pathway survey. 
+# Then the script imports the data to NALMS, so a new wave is ready to begin.
+
+# This script should be run AFTER all of the pathways are created in NALMS 
+# and pathway assignments are entered in Pipeline.
+
+# API tokens stored in .Renviron https://cran.r-project.org/web/packages/httr/vignettes/secrets.html#environment-variables
+
 source(here::here("scripts", "functions.R")) # get custom functions for this project
 
 # get the record_id, name, email, and assigned pathway from Pipeline
 url <- "https://redcap.chop.edu/api/"
-formData <- list("token"=token_Pipeline,
+formData <- list("token"=Sys.getenv("token_Pipeline"),
                  content='record',
                  action='export',
                  format='csv',
@@ -40,7 +51,7 @@ pipeline_this_wave$pathway <- ifelse(pipeline_this_wave$pathway < 3, "aqua",
 pathways <- unique(pipeline_this_wave$pathway)
 
 # get the field names for the whole NALMS project from redcap API
-formData <- list("token"=token_NALMS_testing,
+formData <- list("token"=Sys.getenv("token_NALMS"),
                  content='exportFieldNames',
                  format='csv',
                  returnFormat='json'
@@ -108,7 +119,7 @@ redcap_import <- rbind(basic_info, pathway_forms) |>
   dplyr::arrange(record_id)
 
 # use API to import the new data
-formData <- list("token"=token_NALMS_testing,
+formData <- list("token"=Sys.getenv("token_NALMS"),
                  content='record',
                  action='import',
                  format='csv',

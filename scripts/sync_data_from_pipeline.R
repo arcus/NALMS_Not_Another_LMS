@@ -1,9 +1,14 @@
-source(here::here("secrets", "secrets.R")) # get the API tokens
+# This script pulls down the fields for NALMS Basic Info form from the DART Pipeline data
+# then creates a blank import template for NALMS and fills in the Pipeline data for the relevant fields. 
+# Then it imports the overwritten NALMS data back to the NALMS REDCap project
+
+# API tokens stored in .Renviron https://cran.r-project.org/web/packages/httr/vignettes/secrets.html#environment-variables
+
 source(here::here("scripts", "functions.R")) # get custom functions for this project
 
 # get the Basic Info data from Pipeline
 url <- "https://redcap.chop.edu/api/"
-formData <- list("token"=token_Pipeline,
+formData <- list("token"=Sys.getenv("token_Pipeline"),
                  content='record',
                  action='export',
                  format='csv',
@@ -40,7 +45,7 @@ pipeline$pathway <- ifelse(pipeline$pathway < 3, "aqua",
 
 # get data from the Basic Info form in NALMS
 # (note we need this so we have the correct list of record_ids, since pipeline has more records than nalms)
-formData <- list("token"=token_NALMS,
+formData <- list("token"=Sys.getenv("token_NALMS"),
     content='record',
     action='export',
     format='csv',
@@ -64,7 +69,7 @@ nalms_basic_info_synced <- nalms_basic_info |>
     dplyr::left_join(pipeline, by = "record_id")
 
 # get the field names for the whole NALMS project from redcap API
-formData <- list("token"=token_NALMS,
+formData <- list("token"=Sys.getenv("token_NALMS"),
                  content='exportFieldNames',
                  format='csv',
                  returnFormat='json'
@@ -98,7 +103,7 @@ redcap_import <- as.data.frame(redcap_matrix) |>
 
 
 # use API to import the new data
-formData <- list("token"=token_NALMS,
+formData <- list("token"=Sys.getenv("token_NALMS"),
                  content='record',
                  action='import',
                  format='csv',
