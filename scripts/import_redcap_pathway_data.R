@@ -79,19 +79,6 @@ pathway_form_names <- data.frame(pathway = pathways) |>
 # add form name to pipeline data frame so we can pull it in 
 pipeline_this_wave <- dplyr::left_join(pipeline_this_wave, pathway_form_names, by = "pathway")
 
-data |>
-  dplyr::mutate(
-    dplyr::across(
-      dplyr::starts_with(paste0(pathways, "_")),
-      ~ ifelse(
-        test = stringr::str_detect(dplyr::cur_column(), paste0("^", pathway, "_pathway_complete")),
-        yes = 2,
-        ifelse(
-          test = stringr::str_detect(dplyr::cur_column(), paste0("^", pathway, "_")),
-          yes = 0, 
-          no = NA))))
-
-
 # put in first instance of pathway form
 pathway_forms <- as.data.frame(redcap_matrix) |> 
   dplyr::mutate(record_id = pipeline_this_wave$record_id,
