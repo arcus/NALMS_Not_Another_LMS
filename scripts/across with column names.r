@@ -22,10 +22,12 @@ data |>
     )
   )
 
+pathways <- c("a", "b")
+
 data |>
   dplyr::mutate(
     dplyr::across(
-      dplyr::starts_with(c("a_", "b_")),
+      dplyr::starts_with(paste0(pathways, "_")),
       ~ ifelse(
         test = stringr::str_detect(dplyr::cur_column(), paste0("^", pathway, "_pathway_complete")),
         yes = 2,
