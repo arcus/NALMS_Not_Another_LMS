@@ -13,10 +13,11 @@ formData <- list("token"=token_Pipeline,
                  'fields[1]'='first_name',
                  'fields[2]'='last_name',
                  'fields[3]'='email',
-                 'fields[4]'='pathway',
-                 'fields[5]'='wave',
-                 'fields[6]'='opted_out',
-                 'fields[7]'='dropped_out',
+                 'fields[4]'='enrolled',
+                 'fields[5]'='opted_out',
+                 'fields[6]'='dropped_out',
+                 'fields[7]'='wave',
+                 'fields[8]'='pathway',
                  rawOrLabel='raw',
                  rawOrLabelHeaders='raw',
                  exportCheckboxLabel='false',
@@ -59,45 +60,61 @@ colnames(redcap_matrix) <- redcap_fields
 
 # create an input dataframe from the blank redcap template matrix
 basic_info <- as.data.frame(redcap_matrix) |> 
-  # pull in record_id, pathway, name, email, dropped_out, and opted_out
+  # pull in data for Basic Info form
   dplyr::mutate(record_id = pipeline_this_wave$record_id,
-                pathway = pipeline_this_wave$pathway,
                 first_name = pipeline_this_wave$first_name,
                 last_name = pipeline_this_wave$last_name,
                 email = pipeline_this_wave$email,
+                enrolled = pipeline_this_wave$enrolled,
                 opted_out = pipeline_this_wave$opted_out,
                 dropped_out = pipeline_this_wave$dropped_out,
+                wave = pipeline_this_wave$wave,
+                pathway = pipeline_this_wave$pathway,
                 basic_info_complete = 2)
 
 
-# the name of each form should be the capitalized pathway color and "Pathway", e.g. "red_pathway"
+# the name of each pathway form should be the pathway color and "_pathway", e.g. "red_pathway"
 pathway_form_names <- data.frame(pathway = pathways) |> 
   dplyr::mutate(redcap_repeat_instrument = paste0(pathway, "_pathway"))
 # add form name to pipeline data frame so we can pull it in 
 pipeline_this_wave <- dplyr::left_join(pipeline_this_wave, pathway_form_names, by = "pathway")
+
+data |>
+  dplyr::mutate(
+    dplyr::across(
+      dplyr::starts_with(paste0(pathways, "_")),
+      ~ ifelse(
+        test = stringr::str_detect(dplyr::cur_column(), paste0("^", pathway, "_pathway_complete")),
+        yes = 2,
+        ifelse(
+          test = stringr::str_detect(dplyr::cur_column(), paste0("^", pathway, "_")),
+          yes = 0, 
+          no = NA))))
+
 
 # put in first instance of pathway form
 pathway_forms <- as.data.frame(redcap_matrix) |> 
   dplyr::mutate(record_id = pipeline_this_wave$record_id,
                 redcap_repeat_instrument = pipeline_this_wave$redcap_repeat_instrument,
                 redcap_repeat_instance = 1,
-                pathway = pipeline_this_wave$pathway) |> # pathway here is temporary
-  # for each pathway, put in "not done" (0) for each module in that pathway
-  # pivot longer to pull the pathway name out of the module field name
-  tidyr::pivot_longer(cols = dplyr::starts_with(pathways)) |> 
-  # extract the path associated with each module field from the module name itself
-  tidyr::extract(col = name, into = c("mod_path", "module"), regex = "([[:lower:]]+)_(.*)") |> 
+                pathway = pipeline_this_wave$pathway) |>  # pathway here is temporary
   # put in 2 (complete) for the "color_pathway_complete" field that matches participant's pathway
   # put in 0 (not started) for all modules that match the participant's pathway
-  dplyr::mutate(value = ifelse(pathway == mod_path & module == "pathway_complete", 2, 
-                               ifelse(pathway == mod_path, 0, NA))) |> 
-  # collapse the module and module path fields back together
-  tidyr::unite(col = "name", module, mod_path, sep="_") |> 
-  # pivot back wider to original formatting
-  tidyr::pivot_wider(names_from = name, values_from = value) |> 
+  dplyr::mutate(
+    dplyr::across(
+      dplyr::starts_with(paste0(pathways, "_")),
+      ~ ifelse(
+        test = stringr::str_detect(dplyr::cur_column(), paste0("^", pathway, "_pathway_complete")),
+        yes = 2,
+          no = NA)),
+          dplyr::across(
+      dplyr::ends_with(paste0("_", pathways)),
+      ~ ifelse( 
+          test = stringr::str_detect(dplyr::cur_column(), paste0(".*_", pathway, "$")),
+          yes = 0, 
+          no = NA))) |> 
   dplyr::select(all_of(redcap_fields)) |> # make sure all of the columns are in the right order
   dplyr::mutate(pathway = NA) # get rid of temporary pathway values
-
 
 # rbind basic_info form and pathway forms together, then sort on record_id
 redcap_import <- rbind(basic_info, pathway_forms) |> 
