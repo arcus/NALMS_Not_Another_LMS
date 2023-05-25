@@ -10,7 +10,7 @@ asi_location=pathways/$pathway/asi.md
 ### although they should match because one of the conditions of sending the email
 ### will have to be [pathway-color]="$pathway"
 
-echo "<p>Here is your progress so far on the [pathway_color] pathway as of the time this email was sent:</p>" > $asi_location 
+echo "<p>Here is your progress so far on the [pathway] pathway as of the time this email was sent:</p>" > $asi_location 
 
 ### Start table of modules:
 

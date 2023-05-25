@@ -1,4 +1,4 @@
-<p>Here is your progress so far on the [pathway_color] pathway as of the time this email was sent:</p>
+<p>Here is your progress so far on the [pathway] pathway as of the time this email was sent:</p>
 <table>
 <tbody>
 <tr>
