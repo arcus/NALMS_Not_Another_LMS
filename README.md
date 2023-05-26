@@ -88,7 +88,7 @@ This script doesn't touch pathway survey responses, only the fields in the Basic
 
 ## Processes we still need to document:
 - Upload the .zip file to REDCap
-- Upload automated survey invitations to REDCap with the correct settings (via an R script)
+- Upload automated survey invitations to REDCap with the correct settings (via an R script, the csv with all the settings will also need to be built.)
 - Upload the "pathway completed" alert, which is stored in a .csv, to REDCap (possibly need to create an R script to do this via the API)
 
 
