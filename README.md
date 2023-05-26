@@ -84,3 +84,11 @@ This script overwrites the fields that should be synced between Pipeline and NAL
 This script doesn't touch pathway survey responses, only the fields in the Basic Info form. 
 
 **Note:** Eventually, it would be preferable to replace this syncing process with the [cross-project piping](https://github.com/vanderbilt-redcap/cross-project-piping-module) external module for REDCap, but it's not working in our tests with redcap_v13.4.12.
+
+
+## Processes we still need to document:
+- Upload the .zip file to REDCap
+- Upload automated survey invitations to REDCap with the correct settings (via an R script)
+- Upload the "pathway completed" alert, which is stored in a .csv, to REDCap (possibly need to create an R script to do this via the API)
+
+
