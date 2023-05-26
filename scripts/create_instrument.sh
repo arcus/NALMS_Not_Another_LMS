@@ -51,7 +51,6 @@ do
 
 done
 
-#cat $list_of_modules
 ## Include hidden field that computes if the pathway is complete:
 
 conditional=""

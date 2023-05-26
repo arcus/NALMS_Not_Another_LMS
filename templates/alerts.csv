@@ -1,0 +1,38 @@
+﻿alert-unique-id,alert-title,alert-trigger,unique-form-name,saved-with-form-status,alert-condition,ensure-logic-still-true,alert-stop-type,send-on,send-on-next-day-type,send-on-next-time,send-on-time-lag-days,send-on-time-lag-hours,send-on-time-lag-minutes,send-on-field-after,send-on-field,send-on-date,alert-send-how-many,every-time-type,repeat-for,repeat-for-units,repeat-for-max,alert-expiration,alert-type,email-from-display,email-from,email-to,email-cc,email-bcc,email-failed,email-subject,alert-message,sendgrid-template-id,sendgrid-template-data,sendgrid-mail-send-configuration,prevent-piping-identifiers,file-upload-fields,phone-number-to,alert-deactivated
+A-10445,Link to module survey,SUBMIT,basic_info,COMPLETE,,N,RECORD,NOW,,,,,,,,,ONCE,,,,,,EMAIL,,drelliche@chop.edu,[survey-participant-email],,,,Here is what you have and haven't done yet,"<p>You are in the [pathway_color] pathway.</p>
+<p>Take a look at your modules:</p>
+<p> </p>
+<table style=""border-collapse: collapse; width: 100%;"" border=""1"">
+<tbody>
+<tr>
+<td style=""width: 48.291233%;"">Module 1</td>
+<td style=""width: 48.291233%;""> </td>
+</tr>
+<tr>
+<td style=""width: 48.291233%;"">Module 2</td>
+<td style=""width: 48.291233%;""> </td>
+</tr>
+</tbody>
+</table>
+<p> </p>",,{},{},Y,,,Y
+A-11871,,SUBMIT,user_update_info,ANY,,N,RECORD_EVENT_INSTRUMENT_INSTANCE,NOW,,,,,,,,,ONCE,,,,,,EMAIL,,dart@chop.edu,dart@chop.edu,,,,NALMS user contact info update,"<p>We've received a contact info update for NALMS:</p>
+<p>Record ID: [record-name]</p>
+<p>First/given name: [update_first_name][last-instance]</p>
+<p>Last/family name: [update_last_name][last-instance]</p>
+<p>Email: [update_email][last-instance]</p>
+<p> </p>",,{},{},N,,,N
+A-11876,Completed test_color pathway,SUBMIT-LOGIC,test_color_pathway,COMPLETE,"[calculated_if_complete][current-instance] = ""2""",N,RECORD,NOW,,,,,,,,,ONCE,,,,,,EMAIL,,dart@chop.edu,[survey-participant-email],,,,Congratulations on completing your pathway!,"<p>You have finished the pathway!</p>
+<p>You can always return to it here, but you won't be getting regular reminder emails any more.</p>
+<table style=""border-collapse: collapse; width: 100%;"" border=""1"">
+<tbody>
+<tr>
+<td style=""width: 49.925706%;""> </td>
+<td style=""width: 49.925706%;""> </td>
+</tr>
+<tr>
+<td style=""width: 49.925706%;""> </td>
+<td style=""width: 49.925706%;""> </td>
+</tr>
+</tbody>
+</table>
+<p>More info here!</p>",,{},{},Y,,,N
