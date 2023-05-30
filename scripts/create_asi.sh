@@ -61,4 +61,5 @@ echo "</table>" >> $asi_location
 echo "<p></p>
 <p>As you continue trying out modules, you can check and update your progress in this form:<br />[survey-link:Progress on the $pathway pathway][new-instance]</p>
 <p>You can update this as many times as you want, either by following the link in this email, or by pasting the following url into your browser:<br />[survey-url][new-instance]</p>
-<p>This link is unique to you and should not be forwarded to others.</p>" >> $asi_location
+<p>This link is unique to you and should not be forwarded to others.</p>
+<p>Need to update your name or email? Use this link to <a href="https://redcap.chop.edu/surveys/?s=KMDFN48C4X4ELJCL">update your contact information with us</a>.</p>" >> $asi_location
