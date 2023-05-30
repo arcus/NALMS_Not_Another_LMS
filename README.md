@@ -52,16 +52,15 @@ using_redcap_api
 
 ### Create the files to upload to REDCap
 
-To create the files for the `test_color` pathway, run the bash script `bash scripts/zip_files.sh test_color`. This will create the zip file for the instrument that can be uploaded directly to REDCap.
+To create the files for the `test_color` pathway, run this bash script from the main directory of this repository:
 
-The zip file will be created in the folder for that pathway (e.g. `test_color`), called `test_color.zip` (with the pathway name you used instead of `test_color`).
+```
+bash scripts/create_REDCap_files.sh test_color
+```
 
-Run `bash scripts/create_survey_settings.sh test_color` with whatever your pathway name is.
+This will create the zip file for the instrument that can be uploaded directly to REDCap, as well as the automated survey invitations and the alert for when a user has completed the pathway.
 
-Run `bash scripts/create_completed_alert.sh test_color` with whatever your pathway name is.
-
-This creates a number of files:
-ELIZABETH!! CLEAN THIS UP!!
+These files will be created in the folder for that pathway (e.g. `test_color`), with the pathway name you used instead of `test_color`.
 
 ```
 ./
@@ -71,12 +70,8 @@ ELIZABETH!! CLEAN THIS UP!!
             ├── 1_First_Section.md
             ├── 2_Second_Section.md
             └── 3_Third_Section.md
-        └── asi.md                  (helper file with text of ASI, will not upload to REDCap)
+        └── asi_test_color.csv      (ASI file to upload to REDCap)
         └── completed_alert.csv     (alert file to upload to REDCap)
-        └── completed_alert.md      (helper file with text of the alert, will not upload to REDCap)
-        └── instrument.csv          (gets compressed into the zip file, will not upload to REDCap)
-        └── list_of_modules         (helper file with list of modules, will not upload to REDCap)
-        └── survey_settings.csv     (ASI file to upload to REDCap)
         └── test_color.zip          (instrument zip to upload to REDCap)
 ```
 
@@ -101,7 +96,7 @@ On the same Designer page in REDCap, click the "Auto invitations options" under 
 ![Survey Options menu.](media/pathways_2.png)
 
 Select "upload automated survey invitations settings (csv)" and select "Choose and upload csv".
-Upload the csv called "survey_settings.csv" in your pathway's directory.
+Upload the csv called "asi_test_color.csv" in your pathway's directory.
 
 ### Upload "pathway completed" alert
 
@@ -114,7 +109,16 @@ Select "completed_alert.csv" in your pathway's directory.
 
 ### Check that pathway is correctly set up in REDCap
 
-ELIZABETH FILL THIS OUT :)
+**On the Designer page**: check that your pathway exists, is repeating, and has an active automated survey invitation:
+
+![Test Color pathway survey.](media/pathways_4.png)
+
+You can click on the pathway name to check that all questions are present. The "enabled as survey" column should have both a green badge and a green circular arrow. The text on the "Automated Invitations" button should be green, indicating the survey is active. Click on that button to check that the text and other settings are correct.
+
+**On the Alerts & Notifications page**: find the alert for "Completed test_color pathway" or whichever pathway you are currently checking. You can click "Edit" to verify that the settings are correct, or use the "preview" button to see only the alert text.
+
+![Example REDCap alert.](media/pathways_5.png)
+
 
 ## Getting data from DART Pipeline
 
