@@ -1,6 +1,5 @@
 # This script pulls down the current list of all instruments from the redcap API, 
 # then makes any instruments with "_pathway" in their name repeating
-# (in addition to the user_update_info form, which repeats but is not a pathway)
 # and imports that info back to the project via the API again
 
 # API tokens stored in .Renviron https://cran.r-project.org/web/packages/httr/vignettes/secrets.html#environment-variables
@@ -21,7 +20,7 @@ instruments <- httr::content(response)$instrument_name
 pathways <- grep(x = instruments, pattern = "_pathway", value = TRUE)
 
 # format it for importing to redcap
-repeating_instruments <- data.frame(form_name = c("user_update_info", pathways), custom_form_label = NA) |> 
+repeating_instruments <- data.frame(form_name = pathways, custom_form_label = NA) |> 
   dataframe_as_string()
   
 # import the list of repeating instruments via redcap API
