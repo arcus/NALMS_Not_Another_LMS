@@ -62,4 +62,18 @@ echo "<p></p>
 <p>As you continue trying out modules, you can check and update your progress in this form:<br />[survey-link:Progress on the $pathway pathway][new-instance]</p>
 <p>You can update this as many times as you want, either by following the link in this email, or by pasting the following url into your browser:<br />[survey-url][new-instance]</p>
 <p>This link is unique to you and should not be forwarded to others.</p>
-<p>Need to update your name or email? Use this link to <a href="https://redcap.chop.edu/surveys/?s=C8DL97HYP3PDFDWP&dart_id=[record-name]">update your contact information with us</a>.</p>" >> $asi_location
+<p>Need to update your name or email? Use this link to <a href=https://redcap.chop.edu/surveys/?s=KMDFN48C4X4ELJCL>update your contact information with us</a>.</p>" >> $asi_location
+
+
+### Now the text of the email needs to be wrapped in an automated survey invititation csv so that it can be uploaded with all of the appropriate settings:
+
+asi_file=pathways/$pathway/asi_$pathway.csv
+
+head -1 templates/asi.csv > $asi_file
+
+### Some of the settings we want to be able to change relatively easily:
+num_recurrence=2
+units_recurrence=MINUTES
+max_recurrence=3
+
+echo $pathway"_pathway",basic_info,$num_recurrence,$units_recurrence,$max_recurrence,1,"Your Progress on the "$pathway " pathway",\"$(cat $asi_location)\",dart@chop.edu,,AND,"[pathway]=\"$pathway\" and ["$pathway"_complete][last-instance]<>\"2\"",IMMEDIATELY,,,,,after,,,,EMAIL,,,,,,,,0,1 >> $asi_file
