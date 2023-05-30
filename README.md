@@ -109,7 +109,16 @@ Select "completed_alert.csv" in your pathway's directory.
 
 ### Check that pathway is correctly set up in REDCap
 
-ELIZABETH FILL THIS OUT :)
+**On the Designer page**: check that your pathway exists, is repeating, and has an active automated survey invitation:
+
+![Test Color pathway survey.](media/pathways_4.png)
+
+You can click on the pathway name to check that all questions are present. The "enabled as survey" column should have both a green badge and a green circular arrow. The text on the "Automated Invitations" button should be green, indicating the survey is active. Click on that button to check that the text and other settings are correct.
+
+**On the Alerts & Notifications page**: find the alert for "Completed test_color pathway" or whichever pathway you are currently checking. You can click "Edit" to verify that the settings are correct, or use the "preview" button to see only the alert text.
+
+![Example REDCap alert.](media/pathways_5.png)
+
 
 ## Getting data from DART Pipeline
 
