@@ -8,6 +8,21 @@ The purpose of this repository is to create the files needed for that project, i
 
 Ultimately a user should be able to create a pathway using section headings and module names, and then generate all files needed to create that pathway on REDCap.
 
+## Setup for admin tasks
+
+You'll need REDCap API tokens for the following projects:
+
+- DART Pipeline (pid=56668)
+- NALMS (pid=57556)
+
+Your API tokens should be saved as environment variables. 
+You can save your tokens as environment variables in R by [editing .Renviron](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html#environment-variables) (for more detailed instructions, see our [REDCap API module](https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/using_redcap_api/using_redcap_api.md#20)).
+You'll only need to do this once.
+
+**Be sure to save the NALMS token as `NALMS_57556` and the Pipeline token as `Pipeline_56668`.**
+
+Note: To run the CLI commands here, make sure you're in the main NALMS directory. 
+
 ## Creating a pathway
 
 The point of this repository is to make creating a new DART Pathway as easy as possible. But there are still a few steps involved.
@@ -35,9 +50,71 @@ citizen_science
 using_redcap_api
 ```
 
-### Create the zip files to upload to REDCap
+### Create the files to upload to REDCap
 
 To create the files for the `test_color` pathway, run the bash script `bash scripts/zip_files.sh test_color`. This will create the zip file for the instrument that can be uploaded directly to REDCap.
+
+The zip file will be created in the folder for that pathway (e.g. `test_color`), called `test_color.zip` (with the pathway name you used instead of `test_color`).
+
+Run `bash scripts/create_survey_settings.sh test_color` with whatever your pathway name is.
+
+Run `bash scripts/create_completed_alert.sh test_color` with whatever your pathway name is.
+
+This creates a number of files:
+ELIZABETH!! CLEAN THIS UP!!
+
+```
+./
+└── pathways
+    └── test_color
+        └── sections
+            ├── 1_First_Section.md
+            ├── 2_Second_Section.md
+            └── 3_Third_Section.md
+        └── asi.md                  (helper file with text of ASI, will not upload to REDCap)
+        └── completed_alert.csv     (alert file to upload to REDCap)
+        └── completed_alert.md      (helper file with text of the alert, will not upload to REDCap)
+        └── instrument.csv          (gets compressed into the zip file, will not upload to REDCap)
+        └── list_of_modules         (helper file with list of modules, will not upload to REDCap)
+        └── survey_settings.csv     (ASI file to upload to REDCap)
+        └── test_color.zip          (instrument zip to upload to REDCap)
+```
+
+### Upload instrument zip
+
+In REDCap in the NALMS project (pid=57556), go to Designer, and click the "Upload and Instrument zip file" button.
+
+![Data Collection Instruments menu showing buttons for adding new forms.](media/pathways_1.png)
+
+Upload the zip file you just created.
+
+### Make instrument repeating
+
+Run `make_pathways_repeating.R`. You can do this from the command line with the following: 
+
+`Rscript scripts/make_pathways_repeating.R`
+
+### Upload automated survey invitation (ASI)
+
+On the same Designer page in REDCap, click the "Auto invitations options" under "Survey Options"
+
+![Survey Options menu.](media/pathways_2.png)
+
+Select "upload automated survey invitations settings (csv)" and select "Choose and upload csv".
+Upload the csv called "survey_settings.csv" in your pathway's directory.
+
+### Upload "pathway completed" alert
+
+In REDCap, go to Alerts & Notifications.
+Click "Upload or download alerts", and then "Upload Alerts (CSV)".
+
+![Alerts & Notifications menu.](media/pathways_3.png)
+
+Select "completed_alert.csv" in your pathway's directory.
+
+### Check that pathway is correctly set up in REDCap
+
+ELIZABETH FILL THIS OUT :)
 
 ## Getting data from DART Pipeline
 
@@ -85,10 +162,40 @@ This script doesn't touch pathway survey responses, only the fields in the Basic
 
 **Note:** Eventually, it would be preferable to replace this syncing process with the [cross-project piping](https://github.com/vanderbilt-redcap/cross-project-piping-module) external module for REDCap, but it's not working in our tests with redcap_v13.4.12.
 
+## Updating User Contact Info
 
-## Processes we still need to document:
-- Upload the .zip file to REDCap
-- Upload automated survey invitations to REDCap with the correct settings (via an R script, the csv with all the settings will also need to be built.)
-- Upload the "pathway completed" alert, which is stored in a .csv, to REDCap (possibly need to create an R script to do this via the API)
+Learners can update their contact info with us by filling out the [contact info update form](https://redcap.chop.edu/surveys/?s=C8DL97HYP3PDFDWP) (which is in its own RECap project, pid 59698). 
+This triggers an email to hartmanr1@chop.edu with the updated fields. 
 
+Then it is **our responsibility** to update both DART Pipeline and NALMS with the new info. 
 
+## Changing admin settings for NALMS
+
+The settings for things like pathway reminder email cadence and program length are saved in `templates/survey_settings.csv`. 
+To edit them, change them in the template and then re-create all the pathway files and re-upload to REDCap. 
+
+## Other admin tasks
+
+### Get a user's pathway survey link
+
+At the request of a learner, use their name and/or email address to find their record in NALMS and send that learner a link to their pathway:
+
+**Find their Record ID**
+
+- In the [NALMS project in REDCap, go to Data, Exports, Reports & Stats](https://redcap.chop.edu/redcap_v13.4.12/DataExport/index.php?pid=57556&report_id=ALL). 
+- Start entering the user's name or email in the search box at the top to filter the records. Make a note of the user's Record ID. 
+
+**Get their survey link**
+
+- Click on [Survey Distribution Tools, and then Survey Invitation Log](https://redcap.chop.edu/redcap_v13.4.12/Surveys/invite_participants.php?email_log=1&pid=57556). 
+- Click "View past invitations". 
+- Scroll down until you see an invitation for that user's Record ID, and click "View Invite" (a little picture of an envelope) to open the text of their pathway reminder email. 
+- Copy their REDCap survey link from the email. You can now give this to the learner for them to update their pathway progress.
+
+### Check learner status
+
+Use a learner name and/or email address to find their record in NALMS and DART Pipeline and determine their participation status.
+
+- Follow the instructions above to find the user's Record ID
+- In the [NALMS project in REDCap, select Record Status Dashboard](https://redcap.chop.edu/redcap_v13.4.12/DataEntry/record_status_dashboard.php?pid=57556)
+- Click the button for the Basic Info form for that Record ID. Participation status info should all be available there.
