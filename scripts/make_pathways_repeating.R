@@ -25,7 +25,7 @@ repeating_instruments <- data.frame(form_name = c("user_update_info", pathways),
   dataframe_as_string()
   
 # import the list of repeating instruments via redcap API
-formData <- list("token"=Sys.getenv("token_NALMS_testing"),
+formData <- list("token"=Sys.getenv("NALMS_57556"),
                  content='repeatingFormsEvents',
                  format='csv',
                  data=repeating_instruments,

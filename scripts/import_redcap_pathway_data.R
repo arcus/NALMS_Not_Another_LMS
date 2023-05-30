@@ -14,7 +14,7 @@ source(here::here("scripts", "functions.R")) # get custom functions for this pro
 
 # get the record_id, name, email, and assigned pathway from Pipeline
 url <- "https://redcap.chop.edu/api/"
-formData <- list("token"=Sys.getenv("token_Pipeline"),
+formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  content='record',
                  action='export',
                  format='csv',
@@ -51,7 +51,7 @@ pipeline_this_wave$pathway <- ifelse(pipeline_this_wave$pathway < 3, "aqua",
 pathways <- unique(pipeline_this_wave$pathway)
 
 # get the field names for the whole NALMS project from redcap API
-formData <- list("token"=Sys.getenv("token_NALMS"),
+formData <- list("token"=Sys.getenv("NALMS_57556"),
                  content='exportFieldNames',
                  format='csv',
                  returnFormat='json'
@@ -119,7 +119,7 @@ redcap_import <- rbind(basic_info, pathway_forms) |>
   dplyr::arrange(record_id)
 
 # use API to import the new data
-formData <- list("token"=Sys.getenv("token_NALMS"),
+formData <- list("token"=Sys.getenv("NALMS_57556"),
                  content='record',
                  action='import',
                  format='csv',

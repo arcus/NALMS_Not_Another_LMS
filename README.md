@@ -15,7 +15,11 @@ You'll need REDCap API tokens for the following projects:
 - DART Pipeline (pid=56668)
 - NALMS (pid=57556)
 
-PUT IN INSTRUCTIONS FOR SAVING AS ENVIRONMENT VARS 
+Your API tokens should be saved as environment variables. 
+You can save your tokens as environment variables in R by [editing .Renviron](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html#environment-variables) (for more detailed instructions, see our [REDCap API module](https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/using_redcap_api/using_redcap_api.md#20)).
+You'll only need to do this once.
+
+**Be sure to save the NALMS token as `NALMS_57556` and the Pipeline token as `Pipeline_56668`.**
 
 Note: To run the CLI commands here, make sure you're in the main NALMS directory. 
 
