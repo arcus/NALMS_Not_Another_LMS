@@ -171,9 +171,31 @@ Then it is **our responsibility** to update both DART Pipeline and NALMS with th
 
 ## Changing admin settings for NALMS
 
-ROSE FILL THIS OUT! :)
+The settings for things like pathway reminder email cadence and program length are saved in `templates/survey_settings.csv`. 
+To edit them, change them in the template and then re-create all the pathway files and re-upload to REDCap. 
 
-- Write brief instructions that point to where email cadence, program length, and other admin-level changes at this less-frequently used, admin level need to take place
-- Write instructions such that any staff can, at the request of a learner, use their name and/or email address to find their record in NALMS and send that learner a link to their pathway
-- Write instructions such that any staff can use a learner name and/or email address to find their record in NALMS and DART Pipeline and determine their participation status
+## Other admin tasks
 
+### Get a user's pathway survey link
+
+At the request of a learner, use their name and/or email address to find their record in NALMS and send that learner a link to their pathway:
+
+**Find their Record ID**
+
+- In the [NALMS project in REDCap, go to Data, Exports, Reports & Stats](https://redcap.chop.edu/redcap_v13.4.12/DataExport/index.php?pid=57556&report_id=ALL). 
+- Start entering the user's name or email in the search box at the top to filter the records. Make a note of the user's Record ID. 
+
+**Get their survey link**
+
+- Click on [Survey Distribution Tools, and then Survey Invitation Log](https://redcap.chop.edu/redcap_v13.4.12/Surveys/invite_participants.php?email_log=1&pid=57556). 
+- Click "View past invitations". 
+- Scroll down until you see an invitation for that user's Record ID, and click "View Invite" (a little picture of an envelope) to open the text of their pathway reminder email. 
+- Copy their REDCap survey link from the email. You can now give this to the learner for them to update their pathway progress.
+
+### Check learner status
+
+Use a learner name and/or email address to find their record in NALMS and DART Pipeline and determine their participation status.
+
+- Follow the instructions above to find the user's Record ID
+- In the [NALMS project in REDCap, select Record Status Dashboard](https://redcap.chop.edu/redcap_v13.4.12/DataEntry/record_status_dashboard.php?pid=57556)
+- Click the button for the Basic Info form for that Record ID. Participation status info should all be available there.
