@@ -38,7 +38,7 @@ do
 
    ## The rest of the modules do not get their own section title since they do not start a new section:
 
-   tail +3 $SECTION | while read line 
+   tail +3 $SECTION | while read line || [ -n "$line" ]
       do
       field_name=$pathway"_"$line
       echo $field_name >> $list_of_modules
