@@ -22,15 +22,17 @@ zip -j pathways/$pathway/$pathway.zip pathways/$pathway/instrument.csv templates
 ### individually generated survey_settings files for each pathway. This will allow us to have different text
 ### for each pathway, but for the moment they are all getting the same generic text.
 
-### We also need to create two csv files to upload, one with the automated survey invitation, and the other with the alert they get when the pathway is marked as complete.
+### We also need to create three csv files to upload, one with the automated survey invitation, and the others with the alerts they get when the pathway is marked as complete or if they're inactive for two weeks.
 
 bash scripts/create_asi.sh $pathway
-bash scripts/create_completed_alert.sh $pathway 
+bash scripts/create_completed_alert.sh $pathway
+bash scripts/create_nudge_alert.sh $pathway 
 
 ### Lastly, let's delete some of the helper files we created in this process
 
 rm pathways/$pathway/asi.md ## This was a helper file with the html text of the asi
 rm pathways/$pathway/completed_alert.md  ## this contained the html text of the completed alert
+rm pathways/$pathway/nudge_alert.md  ## this contained the html text of the nudge alert
 rm pathways/$pathway/instrument.csv ## this is now inside the zipped file
 rm pathways/$pathway/survey_settings.csv ## this is now inside the zipped file
 rm pathways/$pathway/list_of_modules ## helper file 
