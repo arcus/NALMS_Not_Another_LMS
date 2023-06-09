@@ -84,6 +84,7 @@ These files will be created in the folder for that pathway (e.g. `test_color`), 
             └── 3_Third_Section.md
         └── asi_test_color.csv      (ASI file to upload to REDCap)
         └── completed_alert.csv     (alert file to upload to REDCap)
+        └── nudge_alert.csv     (alert file to upload to REDCap)
         └── test_color.zip          (instrument zip to upload to REDCap)
 ```
 
@@ -110,7 +111,7 @@ On the same Designer page in REDCap, click the "Auto invitations options" under 
 Select "upload automated survey invitations settings (csv)" and select "Choose and upload csv".
 Upload the csv called "asi_test_color.csv" in your pathway's directory.
 
-### Upload "pathway completed" alert
+### Upload alerts
 
 In REDCap, go to Alerts & Notifications.
 Click "Upload or download alerts", and then "Upload Alerts (CSV)".
@@ -118,6 +119,8 @@ Click "Upload or download alerts", and then "Upload Alerts (CSV)".
 ![Alerts & Notifications menu.](media/pathways_3.png)
 
 Select "completed_alert.csv" in your pathway's directory.
+
+Repeat to upload "nudge_alert.csv".
 
 ### Check that pathway is correctly set up in REDCap
 
@@ -127,7 +130,7 @@ Select "completed_alert.csv" in your pathway's directory.
 
 You can click on the pathway name to check that all questions are present. The "enabled as survey" column should have both a green badge and a green circular arrow. The text on the "Automated Invitations" button should be green, indicating the survey is active. Click on that button to check that the text and other settings are correct.
 
-**On the Alerts & Notifications page**: find the alert for "Completed test_color pathway" or whichever pathway you are currently checking. You can click "Edit" to verify that the settings are correct, or use the "preview" button to see only the alert text.
+**On the Alerts & Notifications page**: find the alerts for "Completed test_color pathway" and "Inactive nudge test_color pathway" or whichever pathway you are currently checking. You can click "Edit" to verify that the settings are correct, or use the "preview" button to see only the alert text.
 
 ![Example REDCap alert.](media/pathways_5.png)
 
