@@ -50,6 +50,12 @@ citizen_science
 using_redcap_api
 ```
 
+#### Finding a module's key
+
+A module's key is the name of both the markdown file and the folder containing that module in https://github.com/arcus/education_modules. 
+
+The key may or may not match the title of the module, for example `reproducibility` is a shortened version of the module's full title, `citizen_science` is in fact the module's name, but "Intro to Version Control" has key `git_intro`.
+
 ### Create the files to upload to REDCap
 
 To create the files for the `test_color` pathway, run this bash script from the main directory of this repository:
