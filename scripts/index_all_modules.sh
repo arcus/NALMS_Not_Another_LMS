@@ -19,7 +19,7 @@ do
   fi
 done
 
-# make module_title.txt
+# make module_time.txt
 
 for FOLDER in *
 do
