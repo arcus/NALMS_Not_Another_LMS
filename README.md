@@ -23,6 +23,12 @@ You'll only need to do this once.
 
 Note: To run the CLI commands here, make sure you're in the main NALMS directory. 
 
+### Updating `module_times.txt`
+
+If new modules have been created or the times of modules have been changed since pathways were last created (i.e. at the start of a new wave) you will need to update the `module_times.txt` file.
+
+The `index_all_modules.sh` script should be run from the top level directory of the `education_modules` repository and the times output can be copied into the `module_times.txt` file. This is cludgy but shouldn't have to be done more than once per wave. As the metadata gets updated across modules this process will need to be updated as well. (estimated_time is becoming estimated_time_in_minutes).
+
 ## Creating a pathway
 
 The point of this repository is to make creating a new DART Pathway as easy as possible. But there are still a few steps involved.
