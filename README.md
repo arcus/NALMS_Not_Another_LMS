@@ -83,8 +83,7 @@ These files will be created in the folder for that pathway (e.g. `test_color`), 
             ├── 2_Second_Section.md
             └── 3_Third_Section.md
         └── asi_test_color.csv      (ASI file to upload to REDCap)
-        └── completed_alert.csv     (alert file to upload to REDCap)
-        └── nudge_alert.csv     (alert file to upload to REDCap)
+        └── alerts.csv              (alert file to upload to REDCap)
         └── test_color.zip          (instrument zip to upload to REDCap)
 ```
 
@@ -118,9 +117,8 @@ Click "Upload or download alerts", and then "Upload Alerts (CSV)".
 
 ![Alerts & Notifications menu.](media/pathways_3.png)
 
-Select "completed_alert.csv" in your pathway's directory.
-
-Repeat to upload "nudge_alert.csv".
+Select "alerts.csv" in your pathway's directory.
+This will upload two alerts: one to nudge participants who are inactive for at least two weeks, and another to congratulate participants who finish their pathways.
 
 ### Check that pathway is correctly set up in REDCap
 
