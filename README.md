@@ -118,7 +118,7 @@ Click "Upload or download alerts", and then "Upload Alerts (CSV)".
 ![Alerts & Notifications menu.](media/pathways_3.png)
 
 Select "alerts.csv" in your pathway's directory.
-This will upload two alerts: one to nudge participants who are inactive for at least two weeks, and another to congratulate participants who finish their pathways.
+This will upload **15** alerts for your pathway: 14 to nudge participants (weekly, on weeks 3-16 inclusive) who are inactive for at least two weeks, and 1 to congratulate participants who finish their pathways.
 
 ### Check that pathway is correctly set up in REDCap
 
@@ -128,7 +128,11 @@ This will upload two alerts: one to nudge participants who are inactive for at l
 
 You can click on the pathway name to check that all questions are present. The "enabled as survey" column should have both a green badge and a green circular arrow. The text on the "Automated Invitations" button should be green, indicating the survey is active. Click on that button to check that the text and other settings are correct.
 
-**On the Alerts & Notifications page**: find the alerts for "Completed test_color pathway" and "Inactive nudge test_color pathway" or whichever pathway you are currently checking. You can click "Edit" to verify that the settings are correct, or use the "preview" button to see only the alert text.
+**On the Alerts & Notifications page**: find the alerts for "test_color" pathway (or whichever pathway you are currently checking). There should be **15** total alerts, one called "Completed test_color pathway" and 14 called "Inactive nudge test_color pathway Week #" for Weeks 3-16. 
+
+Make sure there are exactly **15** alerts for your new pathway, and no more (i.e. that you didn't accidentally re-upload existing alerts).
+
+You can click "Edit" to verify that the settings for any given alert are correct, or use the "preview" button to see the alert text.
 
 ![Example REDCap alert.](media/pathways_5.png)
 
