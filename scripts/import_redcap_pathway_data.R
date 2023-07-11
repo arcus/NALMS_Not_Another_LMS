@@ -39,13 +39,10 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
 response <- httr::POST(url, body = formData, encode = "form")
 pipeline <- httr::content(response)
 
-pipeline_this_wave <- dplyr::filter(pipeline, wave == 1 & !is.na(pathway))
+pipeline_this_wave <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway))
 
 # NOTE: FOR TESTING PURPOSES, OVERWRITE THE REAL EMAILS!
 pipeline_this_wave$email <- "xxx@example.com"
-# NOTE: FOR TESTING, OVERWRITE REAL PATHWAYS WITH TEST ONES
-pipeline_this_wave$pathway <- ifelse(pipeline_this_wave$pathway < 3, "aqua", 
-                                     ifelse(pipeline_this_wave$pathway < 6, "sepia", "magenta"))
 
 # the complete list of pathways in Pipeline for this wave
 pathways <- unique(pipeline_this_wave$pathway)

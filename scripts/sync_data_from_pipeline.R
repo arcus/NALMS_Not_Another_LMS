@@ -38,10 +38,6 @@ pipeline <- httr::content(response)  |>
 
 # NOTE: FOR TESTING PURPOSES, OVERWRITE THE REAL EMAILS!
 pipeline$email <- "xxx@example.com"
-# NOTE: FOR TESTING, OVERWRITE REAL PATHWAYS WITH TEST ONES
-pipeline$pathway <- ifelse(pipeline$pathway < 3, "aqua", 
-                                     ifelse(pipeline$pathway < 6, "sepia", "magenta"))
-
 
 # get data from the Basic Info form in NALMS
 # (note we need this so we have the correct list of record_ids, since pipeline has more records than nalms)
