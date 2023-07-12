@@ -37,3 +37,109 @@ Now we put on our participant hats!
 - Delete all test pathways and data from NALMS. 
 - Set initial NALMS ASI to go out on... Aug 8? Note that we can't coordinate NALMS ASI with Pipeline info so it's not possible e.g. require that pretest be completed before the NALMS ASI goes out. 
 - Set ASI reminder to every 1 week. 
+
+# Our pretend pathways!
+
+## pansy
+
+### Welcome
+
+reproducibility
+
+### Learn Python
+
+demystifying_python
+python_basics_writing_python_code
+tidy_data
+pandas_transform
+
+### Command line and Git
+
+git_setup_windows
+git_setup_mac_and_linux
+bash_command_line_101
+git_creation_and_tracking
+git_history_of_project
+bash_command_line_102
+bash_103_combining_commands
+bash_conditionals_loops
+bash_scripts
+
+## Data visualization
+
+data_visualization_in_open_source_software
+data_visualization_in_ggplot2
+data_visualization_in_seaborn
+
+### Hands-on Practice
+
+python_practice
+r_practice
+
+### More to Explore
+
+citizen_science
+data_management_basics
+
+## sunflower
+
+### Welcome
+
+reproducibility
+learning_to_learn
+
+### Intro to Python
+
+demystifying_python
+python_basics_writing_python_code
+how_to_troubleshoot
+
+### Data Visualization in R and Python
+
+r_basics_visualize_data
+data_visualization_in_open_source_software
+data_visualization_in_ggplot2
+data_visualization_in_seaborn
+
+### Hands-on Practice
+
+python_practice
+r_practice
+
+### More to Explore
+
+statistical_tests
+git_intro
+demystifying_geospatial_data
+demystifying_sql
+citizen_science
+
+## violet
+
+### Welcome
+
+reproducibility
+
+### Learn SQL
+
+sql_basics
+sql_intermediate
+database_normalization
+sql_joins
+
+### Learn R
+
+r_basics_transform_data
+r_basics_visualize_data
+r_reshape_long_wide
+data_visualization_in_open_source_software
+data_visualization_in_ggplot2
+r_missing_values
+r_practice
+
+### More to Explore
+
+citizen_science
+data_management_basics
+
+
