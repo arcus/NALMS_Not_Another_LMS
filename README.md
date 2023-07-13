@@ -99,7 +99,7 @@ Upload the zip file you just created.
 
 ### Make instrument repeating
 
-Run `make_pathways_repeating.R`. You can do this from the command line with the following: 
+In the main NALMS directory, run `make_pathways_repeating.R`. This script isn't specific to your pathway; it will make all pathway forms in the NALMS REDCap project repeating (it's fine to do this redundantly, and it turns out that's the most straightforward way with the REDCap API). You can do this from the command line with the following: 
 
 `Rscript scripts/make_pathways_repeating.R`
 
@@ -223,7 +223,7 @@ Use a learner name and/or email address to find their record in NALMS and DART P
 - In the [NALMS project in REDCap, select Record Status Dashboard](https://redcap.chop.edu/redcap_v13.4.12/DataEntry/record_status_dashboard.php?pid=57556)
 - Click the button for the Basic Info form for that Record ID. Participation status info should all be available there.
 
-### Creating a brannd new NALMS project in REDCap
+### Creating a brand new NALMS project in REDCap
 
 If you wish to create a fresh, empty version of NALMS (with no pathway forms and no data yet), you can do so by uploading the file `NALMS_skeleton.REDCap.xml`. 
 
