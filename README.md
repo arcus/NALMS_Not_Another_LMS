@@ -222,3 +222,14 @@ Use a learner name and/or email address to find their record in NALMS and DART P
 - Follow the instructions above to find the user's Record ID
 - In the [NALMS project in REDCap, select Record Status Dashboard](https://redcap.chop.edu/redcap_v13.4.12/DataEntry/record_status_dashboard.php?pid=57556)
 - Click the button for the Basic Info form for that Record ID. Participation status info should all be available there.
+
+### Creating a brannd new NALMS project in REDCap
+
+If you wish to create a fresh, empty version of NALMS (with no pathway forms and no data yet), you can do so by uploading the file `NALMS_skeleton.REDCap.xml`. 
+
+In REDCap, click New Project to start a new project, and then select "Upload a REDCap project XML file (CDISC ODM format)" under "Project creation option:". Select `NALMS_skeleton.REDCap.xml`.
+
+Note that this does not add users, so you'll need to add any users you want on the project (and assign them to the role "admin" if they need API access, etc.). 
+You'll also need to update the R scripts that use the API to use your new API token for the new project. 
+
+Then you can go through the steps above to create and add pathways, and pull data from Pipeline.
