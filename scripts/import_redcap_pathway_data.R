@@ -39,10 +39,12 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
 response <- httr::POST(url, body = formData, encode = "form")
 pipeline <- httr::content(response)
 
-pipeline_this_wave <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway))
+pipeline_this_wave <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway)) |> 
+  # convert raw (numeric) pathways from pipeline into their labels
+  convert_raw_to_label(col="pathway")
 
 # NOTE: FOR TESTING PURPOSES, OVERWRITE THE REAL EMAILS!
-pipeline_this_wave$email <- "xxx@example.com"
+# pipeline_this_wave$email <- "xxx@example.com"
 
 # the complete list of pathways in Pipeline for this wave
 pathways <- unique(pipeline_this_wave$pathway)
@@ -101,13 +103,11 @@ pathway_forms <- as.data.frame(redcap_matrix) |>
       ~ ifelse(
         test = stringr::str_detect(dplyr::cur_column(), paste0("^", pathway, "_pathway_complete")),
         yes = 2,
-          no = NA)),
-          dplyr::across(
-      dplyr::ends_with(paste0("_", pathways)),
-      ~ ifelse( 
-          test = stringr::str_detect(dplyr::cur_column(), paste0(".*_", pathway, "$")),
-          yes = 0, 
-          no = NA))) |> 
+          ifelse(
+            test = stringr::str_detect(dplyr::cur_column(), paste0("^", pathway, "_")),
+            yes = 0, 
+            no = NA)
+        ))) |> 
   dplyr::select(all_of(redcap_fields)) |> # make sure all of the columns are in the right order
   dplyr::mutate(pathway = NA) # get rid of temporary pathway values
 
