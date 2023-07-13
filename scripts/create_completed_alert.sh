@@ -15,7 +15,7 @@ alert_csv=pathways/$pathway/alerts.csv
 
 echo "<p>Congratulations! You just indicated that you have completed all of the modules in the [pathway] pathway!</p>
 <p></p>
-<p>While we won't be sending you regular emails about your progress, you will always have access to the modules in your pathway, which is displayed at the end of this email for your future reference. You are also welcome to check out the <a href=https://arcus.github.io/education_modules/ target=_blank>complete collection of modules in the DART program</a>.</p>
+<p>While we won't be sending you regular emails about your progress, you will always have access to the modules in your pathway, which is displayed at the end of this email for your future reference. You are also welcome to check out the <a href=https://arcus.github.io/education_modules/list_of_modules target=_blank>complete collection of modules in the DART program</a>.</p>
 <p></p>
 <p>Congratulations again on your acheivement!</p>
 <p>The entire DART team</p>" > $alert_location 
