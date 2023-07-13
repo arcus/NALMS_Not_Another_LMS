@@ -23,6 +23,8 @@ You'll only need to do this once.
 
 Note: To run the CLI commands here, make sure you're in the main NALMS directory. 
 
+Note that if you want to send notifications and ASIs from a shared email (e.g. the dart email), you can [add that email to your redcap account](https://www.research.chop.edu/announcements/adding-another-email-address-to-your-redcap-profile) to be able to use it. This needs to be done for at least one person on the project.  
+
 ### Updating `module_times.txt`
 
 If new modules have been created or the times of modules have been changed since pathways were last created (i.e. at the start of a new wave) you will need to update the `module_times.txt` file.
