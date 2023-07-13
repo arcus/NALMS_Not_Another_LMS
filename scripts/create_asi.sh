@@ -77,4 +77,4 @@ units_recurrence=MINUTES
 max_recurrence=3
 send_date="7/13/2023  10:30:00 AM"
 
-echo $pathway"_pathway",basic_info,$num_recurrence,$units_recurrence,$max_recurrence,1,"Your Progress on the "$pathway " pathway",\"$(cat $asi_location)\",dart@chop.edu,,AND,"[pathway]=\"$pathway\" and ["$pathway"_complete][last-instance]<>\"2\"",EXACT_TIME,,,,,after,,,$send_date,EMAIL,,,,,,,,0,1 >> $asi_file
+echo $pathway"_pathway",basic_info,$num_recurrence,$units_recurrence,$max_recurrence,1,"Your Progress on the "$pathway" pathway",\"$(cat $asi_location)\",dart@chop.edu,,AND,"[pathway]=\"$pathway\" and ["$pathway"_complete][last-instance]<>\"2\"",EXACT_TIME,,,,,after,,,$send_date,EMAIL,,,,,,,,0,1 >> $asi_file
