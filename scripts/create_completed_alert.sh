@@ -5,7 +5,7 @@
 pathway=$1
 
 alert_location=pathways/$pathway/completed_alert.md
-alert_csv=pathways/$pathway/alerts_$pathway.csv.csv 
+alert_csv=pathways/$pathway/alerts_$pathway.csv
 
 ### Note that the [pathway] is a field in REDCap, not the directory in this repo
 ### although they should match because one of the conditions of sending the email
