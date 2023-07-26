@@ -143,3 +143,27 @@ citizen_science
 data_management_basics
 
 
+# Flowers
+
+aster
+azalea
+begonia
+camellia
+cosmos
+crocus
+daffodil
+dahlia
+daisy
+geranium
+iris
+jasmine
+lavender
+lily
+lilac
+lotus
+magnolia
+marigold 
+peony
+orchid
+sunflower 
+tulip 
