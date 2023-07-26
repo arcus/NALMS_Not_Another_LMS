@@ -41,7 +41,7 @@ pipeline$email <- "xxx@example.com"
 
 # get data from the Basic Info form in NALMS
 # (note we need this so we have the correct list of record_ids, since pipeline has more records than nalms)
-formData <- list("token"=Sys.getenv("NALMS_57556"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
     content='record',
     action='export',
     format='csv',
@@ -65,7 +65,7 @@ nalms_basic_info_synced <- nalms_basic_info |>
     dplyr::left_join(pipeline, by = "record_id")
 
 # get the field names for the whole NALMS project from redcap API
-formData <- list("token"=Sys.getenv("NALMS_57556"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  content='exportFieldNames',
                  format='csv',
                  returnFormat='json'
@@ -99,7 +99,7 @@ redcap_import <- as.data.frame(redcap_matrix) |>
 
 
 # use API to import the new data
-formData <- list("token"=Sys.getenv("NALMS_57556"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  content='record',
                  action='import',
                  format='csv',

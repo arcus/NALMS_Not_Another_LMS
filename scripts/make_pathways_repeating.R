@@ -8,7 +8,7 @@ source(here::here("scripts", "functions.R")) # get custom functions for this pro
 
 # get the current list of all instruments
 url <- "https://redcap.chop.edu/api/"
-formData <- list("token"=Sys.getenv("NALMS_57556"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  content='instrument',
                  format='csv',
                  returnFormat='json'
@@ -24,7 +24,7 @@ repeating_instruments <- data.frame(form_name = pathways, custom_form_label = NA
   dataframe_as_string()
   
 # import the list of repeating instruments via redcap API
-formData <- list("token"=Sys.getenv("NALMS_57556"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  content='repeatingFormsEvents',
                  format='csv',
                  data=repeating_instruments,

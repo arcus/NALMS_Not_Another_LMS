@@ -50,7 +50,7 @@ pipeline_this_wave <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway)) |>
 pathways <- unique(pipeline_this_wave$pathway)
 
 # get the field names for the whole NALMS project from redcap API
-formData <- list("token"=Sys.getenv("NALMS_57556"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  content='exportFieldNames',
                  format='csv',
                  returnFormat='json'
@@ -116,7 +116,7 @@ redcap_import <- rbind(basic_info, pathway_forms) |>
   dplyr::arrange(record_id)
 
 # use API to import the new data
-formData <- list("token"=Sys.getenv("NALMS_57556"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  content='record',
                  action='import',
                  format='csv',
