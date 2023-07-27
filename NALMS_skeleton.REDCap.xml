@@ -50,6 +50,7 @@
 		<ItemRef ItemOID="dropped_out" Mandatory="No" redcap:Variable="dropped_out"/>
 		<ItemRef ItemOID="wave" Mandatory="No" redcap:Variable="wave"/>
 		<ItemRef ItemOID="pathway" Mandatory="No" redcap:Variable="pathway"/>
+		<ItemRef ItemOID="pretest_complete" Mandatory="No" redcap:Variable="pretest_complete"/>
 		<ItemRef ItemOID="nalms_fields" Mandatory="No" redcap:Variable="nalms_fields"/>
 		<ItemRef ItemOID="stop_emails" Mandatory="No" redcap:Variable="stop_emails"/>
 	</ItemGroupDef>
@@ -90,6 +91,10 @@
 	<ItemDef OID="pathway" Name="pathway" DataType="text" Length="9" redcap:Variable="pathway" redcap:FieldType="select">
 		<Question><TranslatedText>pathway</TranslatedText></Question>
 		<CodeListRef CodeListOID="pathway.choices"/>
+	</ItemDef>
+	<ItemDef OID="pretest_complete" Name="pretest_complete" DataType="text" Length="1" redcap:Variable="pretest_complete" redcap:FieldType="select">
+		<Question><TranslatedText>Pretest complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="pretest_complete.choices"/>
 	</ItemDef>
 	<ItemDef OID="nalms_fields" Name="nalms_fields" DataType="text" Length="999" redcap:Variable="nalms_fields" redcap:FieldType="descriptive">
 		<Question><TranslatedText>The following fields are specific to NALMS and do not coordinate with data in DART Pipeline.</TranslatedText></Question>
@@ -140,6 +145,11 @@
 		<CodeListItem CodedValue="orchid"><Decode><TranslatedText>orchid</TranslatedText></Decode></CodeListItem>
 		<CodeListItem CodedValue="sunflower"><Decode><TranslatedText>sunflower</TranslatedText></Decode></CodeListItem>
 		<CodeListItem CodedValue="tulip"><Decode><TranslatedText>tulip</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="pretest_complete.choices" Name="pretest_complete" DataType="text" redcap:Variable="pretest_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
 	</CodeList>
 	<CodeList OID="basic_info_complete.choices" Name="basic_info_complete" DataType="text" redcap:Variable="basic_info_complete">
 		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
