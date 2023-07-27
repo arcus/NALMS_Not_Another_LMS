@@ -101,7 +101,11 @@ Upload the zip file you just created.
 
 In the main NALMS directory, run `make_pathways_repeating.R`. This script isn't specific to your pathway; it will make all pathway forms in the NALMS REDCap project repeating (it's fine to do this redundantly, and it turns out that's the most straightforward way with the REDCap API). You can do this from the command line with the following: 
 
-`Rscript scripts/make_pathways_repeating.R`
+```
+Rscript scripts/make_pathways_repeating.R
+```
+
+After running this, you should see a little green circle arrow appear next to the "enabled as survey" badge in REDCap (you may need to refresh the page).
 
 ### Upload automated survey invitation (ASI)
 
@@ -128,7 +132,7 @@ This will upload **15** alerts for your pathway: 14 to nudge participants (weekl
 
 ![Test Color pathway survey.](media/pathways_4.png)
 
-You can click on the pathway name to check that all questions are present. The "enabled as survey" column should have both a green badge and a green circular arrow. The text on the "Automated Invitations" button should be green, indicating the survey is active. Click on that button to check that the text and other settings are correct.
+You can click on the pathway name to check that all questions are present. The "enabled as survey" column should have both a green badge and a green circular arrow. The text on the "Automated Invitations" button should be green, indicating the survey invitation is active. Click on that button to check that the text and other settings are correct.
 
 **On the Alerts & Notifications page**: find the alerts for "test_color" pathway (or whichever pathway you are currently checking). There should be **15** total alerts, one called "Completed test_color pathway" and 14 called "Inactive nudge test_color pathway Week #" for Weeks 3-16. 
 
@@ -152,6 +156,7 @@ The following fields in NALMS come from DART Pipeline:
 - dropped_out
 - wave
 - pathway
+- pretest_complete
 
 All of these fields are in the **Basic Info** form in NALMS, which is a form we fill out, not a participant-facing survey. 
 
@@ -176,6 +181,12 @@ All of the pathway surveys are set to allow repeating instances, and to display 
 So when a learner opens their pathway survey for the first time, it will show what REDCap thinks the previous instance is ("not started" for every module), which was actually entered by us. 
 The first set of genuine learner responses will be recorded by REDCap as instance 2. 
 
+You can run it from the command line from within the NALMS main directory: 
+
+```
+Rscript scripts/import_redcap_pathway_data.R
+```
+
 #### Periodic syncing script
 
 In addition to manually updating both NALMS and Pipeline with changes in learner information, we can periodically run the `sync_data_from_pipeline.R` import script to ensure the data in both places is staying synched. 
@@ -183,12 +194,18 @@ In addition to manually updating both NALMS and Pipeline with changes in learner
 This script overwrites the fields that should be synced between Pipeline and NALMS with the current Pipeline data --- that means if you update Basic Info in NALMS and forget to add it to Pipeline as well, it will get erased! 
 This script doesn't touch pathway survey responses, only the fields in the Basic Info form. 
 
+You can run it from the command line from within the NALMS main directory: 
+
+```
+Rscript scripts/sync_data_from_pipeline.R
+```
+
 **Note:** Eventually, it would be preferable to replace this syncing process with the [cross-project piping](https://github.com/vanderbilt-redcap/cross-project-piping-module) external module for REDCap, but it's not working in our tests with redcap_v13.4.12.
 
 ## Updating User Contact Info
 
 Learners can update their contact info with us by filling out the [contact info update form](https://redcap.chop.edu/surveys/?s=C8DL97HYP3PDFDWP) (which is in its own RECap project, pid 59698). 
-This triggers an email to hartmanr1@chop.edu with the updated fields. 
+This triggers an email to dart@chop.edu with the updated fields. 
 
 Then it is **our responsibility** to update both DART Pipeline and NALMS with the new info. 
 
@@ -226,6 +243,7 @@ Use a learner name and/or email address to find their record in NALMS and DART P
 ### Creating a brand new NALMS project in REDCap
 
 If you wish to create a fresh, empty version of NALMS (with no pathway forms and no data yet), you can do so by uploading the file `NALMS_skeleton.REDCap.xml`. 
+If you're starting a new wave with new pathway names, then you'll want to update the list of options for the `pathway` field first.
 
 In REDCap, click New Project to start a new project, and then select "Upload a REDCap project XML file (CDISC ODM format)" under "Project creation option:". Select `NALMS_skeleton.REDCap.xml`.
 
