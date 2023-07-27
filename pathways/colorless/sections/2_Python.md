@@ -1,6 +1,0 @@
-Learn Python
-demystifying_python
-python_basics_writing_python_code
-pandas_transform
-data_visualization_in_seaborn
-python_practice

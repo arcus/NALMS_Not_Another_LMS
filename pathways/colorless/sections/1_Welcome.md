@@ -1,5 +1,0 @@
-Welcome to DART
-reproducibility
-citizen_science
-learning_to_learn
-how_to_troubleshoot
