@@ -51,7 +51,6 @@
 		<ItemRef ItemOID="wave" Mandatory="No" redcap:Variable="wave"/>
 		<ItemRef ItemOID="pathway" Mandatory="No" redcap:Variable="pathway"/>
 		<ItemRef ItemOID="nalms_fields" Mandatory="No" redcap:Variable="nalms_fields"/>
-		<ItemRef ItemOID="complete" Mandatory="No" redcap:Variable="complete"/>
 		<ItemRef ItemOID="stop_emails" Mandatory="No" redcap:Variable="stop_emails"/>
 	</ItemGroupDef>
 	<ItemGroupDef OID="basic_info.basic_info_complete" Name="Form Status" Repeating="No">
@@ -95,10 +94,6 @@
 	<ItemDef OID="nalms_fields" Name="nalms_fields" DataType="text" Length="999" redcap:Variable="nalms_fields" redcap:FieldType="descriptive">
 		<Question><TranslatedText>The following fields are specific to NALMS and do not coordinate with data in DART Pipeline.</TranslatedText></Question>
 	</ItemDef>
-	<ItemDef OID="complete" Name="complete" DataType="text" Length="1" redcap:Variable="complete" redcap:FieldType="radio" redcap:FieldNote="NEEDS TO BE UPDATED AS A CALC FIELD">
-		<Question><TranslatedText>Did the learner mark all modules in their pathway complete?</TranslatedText></Question>
-		<CodeListRef CodeListOID="complete.choices"/>
-	</ItemDef>
 	<ItemDef OID="stop_emails" Name="stop_emails" DataType="float" Length="999" redcap:Variable="stop_emails" redcap:FieldType="calc" redcap:Calculation="if([enrolled]=&quot;0&quot; or [opted_out]=&quot;1&quot; or [dropped_out]=&quot;1&quot;, 1, 0)">
 		<Question><TranslatedText>Should we prevent emails from going to this learner?</TranslatedText></Question>
 	</ItemDef>
@@ -126,10 +121,6 @@
 		<CodeListItem CodedValue="violet"><Decode><TranslatedText>violet</TranslatedText></Decode></CodeListItem>
 		<CodeListItem CodedValue="pansy"><Decode><TranslatedText>pansy</TranslatedText></Decode></CodeListItem>
 		<CodeListItem CodedValue="sunflower"><Decode><TranslatedText>sunflower</TranslatedText></Decode></CodeListItem>
-	</CodeList>
-	<CodeList OID="complete.choices" Name="complete" DataType="text" redcap:Variable="complete">
-		<CodeListItem CodedValue="0"><Decode><TranslatedText>In progress</TranslatedText></Decode></CodeListItem>
-		<CodeListItem CodedValue="1"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
 	</CodeList>
 	<CodeList OID="basic_info_complete.choices" Name="basic_info_complete" DataType="text" redcap:Variable="basic_info_complete">
 		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
