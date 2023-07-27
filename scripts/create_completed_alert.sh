@@ -64,6 +64,6 @@ echo "</table>" >> $alert_location
 
 head -1 templates/alerts.csv > $alert_csv
 
-echo ',Completed '$pathway' pathway,SUBMIT-LOGIC,'$pathway'_pathway,COMPLETE,['$pathway'_complete][current-instance] ="2",N,RECORD,NOW,,,,,,,,,ONCE,,,,,,EMAIL,,dart@chop.edu,[survey-participant-email],,,,Congratulations on completing your pathway!,"'$(cat pathways/$pathway/completed_alert.md)'",,{},{},Y,,,N' >>$alert_csv
+echo ',Completed '$pathway' pathway,SUBMIT-LOGIC,'$pathway'_pathway,COMPLETE,['$pathway'_complete][current-instance] ="2" AND [wave] ="2" AND [stop_emails] = "0",N,RECORD,NOW,,,,,,,,,ONCE,,,,,,EMAIL,,dart@chop.edu,[survey-participant-email],,,,Congratulations on completing your pathway!,"'$(cat pathways/$pathway/completed_alert.md)'",,{},{},Y,,,N' >>$alert_csv
 
 
