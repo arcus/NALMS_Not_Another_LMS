@@ -29,7 +29,7 @@ Note that if you want to send notifications and ASIs from a shared email (e.g. t
 
 If new modules have been created or the times of modules have been changed since pathways were last created (i.e. at the start of a new wave) you will need to update the `module_times.txt` file.
 
-The `index_all_modules.sh` script should be run from the top level directory of the `education_modules` repository and the times output can be copied into the `module_times.txt` file. This is cludgy but shouldn't have to be done more than once per wave. As the metadata gets updated across modules this process will need to be updated as well. (estimated_time is becoming estimated_time_in_minutes).
+The `index_all_modules.sh` script should be run from the top level directory of the `education_modules` repository and the times output can be copied into the `module_times.txt` file. This is cludgy but shouldn't have to be done more than once per wave. As the metadata gets updated across modules this process will need to be updated as well. (`estimated_time` is becoming `estimated_time_in_minutes`).
 
 ## Creating a pathway
 
@@ -85,7 +85,7 @@ These files will be created in the folder for that pathway (e.g. `test_color`), 
             ├── 2_Second_Section.md
             └── 3_Third_Section.md
         └── asi_test_color.csv      (ASI file to upload to REDCap)
-        └── alerts.csv              (alert file to upload to REDCap)
+        └── alerts_test_color.csv              (alert file to upload to REDCap)
         └── test_color.zip          (instrument zip to upload to REDCap)
 ```
 
@@ -119,7 +119,7 @@ Click "Upload or download alerts", and then "Upload Alerts (CSV)".
 
 ![Alerts & Notifications menu.](media/pathways_3.png)
 
-Select "alerts.csv" in your pathway's directory.
+Select "alerts_test_color.csv" in your pathway's directory.
 This will upload **15** alerts for your pathway: 14 to nudge participants (weekly, on weeks 3-16 inclusive) who are inactive for at least two weeks, and 1 to congratulate participants who finish their pathways.
 
 ### Check that pathway is correctly set up in REDCap
