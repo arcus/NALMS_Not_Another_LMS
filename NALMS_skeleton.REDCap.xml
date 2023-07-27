@@ -118,9 +118,28 @@
 		<CodeListItem CodedValue="3"><Decode><TranslatedText>Wave 3</TranslatedText></Decode></CodeListItem>
 	</CodeList>
 	<CodeList OID="pathway.choices" Name="pathway" DataType="text" redcap:Variable="pathway">
-		<CodeListItem CodedValue="violet"><Decode><TranslatedText>violet</TranslatedText></Decode></CodeListItem>
-		<CodeListItem CodedValue="pansy"><Decode><TranslatedText>pansy</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="aster"><Decode><TranslatedText>aster</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="azalea"><Decode><TranslatedText>azalea</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="begonia"><Decode><TranslatedText>begonia</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="camellia"><Decode><TranslatedText>camellia</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="cosmos"><Decode><TranslatedText>cosmos</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="crocus"><Decode><TranslatedText>crocus</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="daffodil"><Decode><TranslatedText>daffodil</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="dahlia"><Decode><TranslatedText>dahlia</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="daisy"><Decode><TranslatedText>daisy</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="geranium"><Decode><TranslatedText>geranium</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="iris"><Decode><TranslatedText>iris</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="jasmine"><Decode><TranslatedText>jasmine</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="lavender"><Decode><TranslatedText>lavender</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="lily"><Decode><TranslatedText>lily</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="lilac"><Decode><TranslatedText>lilac</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="lotus"><Decode><TranslatedText>lotus</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="magnolia"><Decode><TranslatedText>magnolia</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="marigold"><Decode><TranslatedText>marigold</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="peony"><Decode><TranslatedText>peony</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="orchid"><Decode><TranslatedText>orchid</TranslatedText></Decode></CodeListItem>
 		<CodeListItem CodedValue="sunflower"><Decode><TranslatedText>sunflower</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="tulip"><Decode><TranslatedText>tulip</TranslatedText></Decode></CodeListItem>
 	</CodeList>
 	<CodeList OID="basic_info_complete.choices" Name="basic_info_complete" DataType="text" redcap:Variable="basic_info_complete">
 		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
