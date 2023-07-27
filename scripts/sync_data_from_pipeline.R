@@ -23,7 +23,7 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  'fields[6]'='dropped_out',
                  'fields[7]'='wave',
                  'fields[8]'='pathway',
-                 'events[0]'='screening_arm_1',
+                 'fields[9]'='oss_module_data_sharing_fundamentals_complete',
                  rawOrLabel='raw',
                  rawOrLabelHeaders='raw',
                  exportCheckboxLabel='false',
@@ -32,12 +32,36 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  returnFormat='json'
 )
 response <- httr::POST(url, body = formData, encode = "form")
-pipeline <- httr::content(response)  |>
-    # only keep fields that are synced with nalms
-    dplyr::select(record_id, first_name, last_name, email, enrolled, opted_out, dropped_out, wave, pathway)
+pipeline <- httr::content(response)  
 
-# NOTE: FOR TESTING PURPOSES, OVERWRITE THE REAL EMAILS!
-pipeline$email <- "xxx@example.com"
+# Make pretest_complete info available in all events, not just pre_arm_1
+pretest_completers <- pipeline |>
+  dplyr::select(record_id, pretest_complete = oss_module_data_sharing_fundamentals_complete) |> 
+  dplyr::filter(pretest_complete == 2) |> 
+  unique()
+pipeline <- pipeline |> 
+  # put in pretest_complete
+  dplyr::select(-oss_module_data_sharing_fundamentals_complete) |> 
+  dplyr::left_join(pretest_completers, by = "record_id") |>
+  # remove rows that aren't from the screener event
+  dplyr::filter(redcap_event_name == "screening_arm_1") |> 
+  # only keep fields that are synced with NALMS
+  dplyr::select(record_id, first_name, last_name, email, enrolled, opted_out, dropped_out, wave, pathway, pretest_complete)
+
+# -------------------------------------------------------
+# NOTE: FOR TESTING PURPOSES
+#
+# OVERWRITE THE REAL EMAILS!
+pipeline$email <- "rosemhartman@gmail.com"
+# ADD FAKE PATHWAYS
+pipeline$pathway <- 10
+# LIMIT NUMBER OF PARTICIPANTS
+pipeline <- dplyr::filter(pipeline, record_id < 10)
+# -------------------------------------------------------
+
+pipeline <- pipeline |> 
+  # convert raw (numeric) pathways from Pipeline into their labels
+  convert_raw_to_label(col="pathway")
 
 # get data from the Basic Info form in NALMS
 # (note we need this so we have the correct list of record_ids, since pipeline has more records than nalms)
@@ -93,7 +117,8 @@ redcap_import <- as.data.frame(redcap_matrix) |>
                 opted_out = nalms_basic_info_synced$opted_out,
                 dropped_out = nalms_basic_info_synced$dropped_out,
                 wave = nalms_basic_info_synced$wave,
-                pathway = nalms_basic_info_synced$pathway) |> 
+                pathway = nalms_basic_info_synced$pathway,
+                pretest_complete = nalms_basic_info_synced$pretest_complete) |> 
   # make sure it's sorted by record_id              
   dplyr::arrange(record_id)
 

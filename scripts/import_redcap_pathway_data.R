@@ -29,6 +29,7 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  'fields[6]'='dropped_out',
                  'fields[7]'='wave',
                  'fields[8]'='pathway',
+                 'fields[9]'='oss_module_data_sharing_fundamentals_complete',
                  rawOrLabel='raw',
                  rawOrLabelHeaders='raw',
                  exportCheckboxLabel='false',
@@ -39,12 +40,30 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
 response <- httr::POST(url, body = formData, encode = "form")
 pipeline <- httr::content(response)
 
+# Make pretest_complete info available in all events, not just pre_arm_1
+pretest_completers <- pipeline |>
+  dplyr::select(record_id, pretest_complete = oss_module_data_sharing_fundamentals_complete) |> 
+  dplyr::filter(pretest_complete == 2) |> 
+  unique()
+pipeline <- pipeline |> 
+  dplyr::select(-oss_module_data_sharing_fundamentals_complete) |> 
+  dplyr::left_join(pretest_completers, by = "record_id")
+
+
+# -------------------------------------------------------
+# NOTE: FOR TESTING PURPOSES
+#
+# OVERWRITE THE REAL EMAILS!
+pipeline$email <- "hartmanr1@chop.edu"
+# ADD FAKE PATHWAYS
+pipeline$pathway <- 10
+# LIMIT NUMBER OF PARTICIPANTS
+pipeline <- dplyr::filter(pipeline, record_id < 10)
+# -------------------------------------------------------
+
 pipeline_this_wave <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway)) |> 
   # convert raw (numeric) pathways from pipeline into their labels
   convert_raw_to_label(col="pathway")
-
-# NOTE: FOR TESTING PURPOSES, OVERWRITE THE REAL EMAILS!
-# pipeline_this_wave$email <- "xxx@example.com"
 
 # the complete list of pathways in Pipeline for this wave
 pathways <- unique(pipeline_this_wave$pathway)
@@ -80,6 +99,7 @@ basic_info <- as.data.frame(redcap_matrix) |>
                 dropped_out = pipeline_this_wave$dropped_out,
                 wave = pipeline_this_wave$wave,
                 pathway = pipeline_this_wave$pathway,
+                pretest_complete = pipeline_this_wave$pretest_complete,
                 basic_info_complete = 2)
 
 
