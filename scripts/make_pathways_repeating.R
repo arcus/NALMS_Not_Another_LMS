@@ -14,7 +14,7 @@ formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  returnFormat='json'
 )
 response <- httr::POST(url, body = formData, encode = "form")
-instruments <- httr::content(response)$instrument_name
+instruments <- httr::content(response, show_col_types = FALSE)$instrument_name
 
 # the list of all pathway instruments
 pathways <- grep(x = instruments, pattern = "_pathway", value = TRUE)
@@ -31,5 +31,5 @@ formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  returnFormat='json'
 )
 response <- httr::POST(url, body = formData, encode = "form")
-result <- httr::content(response)
+result <- httr::content(response, show_col_types = FALSE)
 print(result) # if it imports correctly, result should be the number of repeating instruments

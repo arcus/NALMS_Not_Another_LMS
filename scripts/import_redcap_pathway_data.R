@@ -38,7 +38,7 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  returnFormat='json'
 )
 response <- httr::POST(url, body = formData, encode = "form")
-pipeline <- httr::content(response)
+pipeline <- httr::content(response, show_col_types = FALSE)
 
 # Make pretest_complete info available in all events, not just pre_arm_1
 pretest_completers <- pipeline |>
@@ -75,7 +75,7 @@ formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  returnFormat='json'
 )
 response <- httr::POST(url, body = formData, encode = "form")
-nalms_data <- httr::content(response)
+nalms_data <- httr::content(response, show_col_types = FALSE)
 redcap_fields <- nalms_data$export_field_name
 
 # it doesn't add fields for repeating instances, sigh
@@ -148,5 +148,5 @@ formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
                  returnFormat='json'
 )
 response <- httr::POST(url, body = formData, encode = "form")
-result <- httr::content(response)
+result <- httr::content(response, show_col_types = FALSE)
 print(result) 
