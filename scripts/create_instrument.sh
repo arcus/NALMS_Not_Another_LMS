@@ -33,7 +33,7 @@ do
       module_name=$(grep $line module_title.txt | sed "s/^[^ ]* //")
       field_text="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank> $module_name </a>"
       action_tag="@IF([current-instance]=1,@DEFAULT='0', @SETVALUE='[$field_name:value][last-instance]')."
-         echo $field_name,$pathway"_"pathway,$section_name,radio,\"$field_text\",$radio_buttons,,,,,,,,RH,,,,\"$action_tag\" >> $instrument_file
+         echo $field_name,$pathway"_"pathway,$section_name,radio,\"$field_text\",$radio_buttons,,,,,,,,RV,,,,\"$action_tag\" >> $instrument_file
       done
 
    ## The rest of the modules do not get their own section title since they do not start a new section:
@@ -46,7 +46,7 @@ do
       module_name=$(grep $line module_title.txt | sed "s/^[^ ]* //")
       field_text="<a href=https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/$line/$line.md target=_blank> $module_name </a>"
       action_tag="@IF([current-instance]=1,@DEFAULT='0', @SETVALUE='[$field_name:value][last-instance]')."
-         echo $field_name,$pathway"_"pathway,,radio,\"$field_text\",$radio_buttons,,,,,,,,RH,,,,\"$action_tag\" >> $instrument_file
+         echo $field_name,$pathway"_"pathway,,radio,\"$field_text\",$radio_buttons,,,,,,,,RV,,,,\"$action_tag\" >> $instrument_file
       done
 
 done
