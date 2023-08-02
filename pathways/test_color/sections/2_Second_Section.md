@@ -1,3 +1,0 @@
-Section 2 Title
-learning_to_learn
-how_to_troubleshoot
