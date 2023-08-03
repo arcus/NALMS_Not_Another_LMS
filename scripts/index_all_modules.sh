@@ -26,18 +26,10 @@ do
   if [[ -s $FOLDER/$FOLDER.md && "$FOLDER" != "a_sample_module_template" ]]       ## Only do this for folders that have a real module inside them.
     then
       ROW=$FOLDER
-      ROW+=" `grep -m 1 estimated_time: $FOLDER/$FOLDER.md | sed "s/^[^ ]* //" | sed "s/^[ ]* //" | tr -dc '[:print:]' `"  # Pull the YAML entry but remove excess white space at the front, as well as any unprintable characters or commas
-
-      echo $ROW 
-  fi
-done
-
-for FOLDER in *
-do
-  if [[ -s $FOLDER/$FOLDER.md && "$FOLDER" != "a_sample_module_template" ]]       ## Only do this for folders that have a real module inside them.
-    then
-      ROW=$FOLDER
-      ROW+=" `grep -m 1 estimated_time_in_minutes: $FOLDER/$FOLDER.md | sed "s/^[^ ]* //" | sed "s/^[ ]* //" | tr -dc '[:print:]' `"  # Pull the YAML entry but remove excess white space at the front, as well as any unprintable characters or commas
+      ROW+=" "
+      ROW+="`grep -m 1 estimated_time: $FOLDER/$FOLDER.md | sed "s/^[^ ]* //" | sed "s/^[ ]* //" | tr -dc '[:print:]' `"  # Pull the YAML entry but remove excess white space at the front, as well as any unprintable characters or commas
+      ROW+="`grep -m 1 estimated_time_in_minutes: $FOLDER/$FOLDER.md | sed "s/^[^ ]* //" | sed "s/^[ ]* //" | tr -dc '[:print:]' `"  
+      ROW+=" minutes"
 
       echo $ROW 
   fi
