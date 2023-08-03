@@ -34,7 +34,10 @@ intro_to_nhst 40 min
 learning_to_learn 20 min
 omics_orientation 15 min
 pandas_transform 1 hour
-python_basics_writing_python_code 1 hour
+python_basics_variables_functions_methods 20 min 
+python_basics_lists_dictionaries 20 min
+python_basics_loops_conditionals 20 min
+python_basics_exercise 30 min
 python_practice 1 hour
 r_basics_introduction 60 min
 r_basics_transform_data 60 min
