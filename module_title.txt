@@ -3,6 +3,7 @@ bash_command_line_101 Bash / Command Line 101
 bash_command_line_102 Bash: Searching and Organizing Files
 bash_conditionals_loops Bash: Conditionals and Loops
 bash_scripts Bash: Reusable Scripts
+bias_variance_tradeoff Understanding the Bias-Variance Tradeoff
 citizen_science Citizen Science
 data_management_basics Research Data Management Basics
 data_storage_models Types of Data Storage Solutions
@@ -10,11 +11,17 @@ data_visualization_in_ggplot2 Data Visualization in ggplot2
 data_visualization_in_open_source_software Data Visualization in Open Source Software
 data_visualization_in_seaborn Data Visualization in seaborn
 database_normalization Database Normalization
+demystifying_containers Demystifying Containers
 demystifying_geospatial_data Demystifying Geospatial Data
+demystifying_machine_learning Demystifying Machine Learning
 demystifying_python Demystifying Python
+demystifying_regular_expressions Demystifying Regular Expressions
 demystifying_sql Demystifying SQL
 directories_and_file_paths Directories and File Paths
+docker_101 Getting Started with Docker for Research
 elements_of_maps The Elements of Maps
+genomics_quality_control Genomics Tools and Methods: Quality Control
+genomics_setup Genomics Tools and Methods: Computing Setup
 geocode_lat_long Encoding Geospatial Data: Latitude and Longitude
 git_creation_and_tracking Creating a Git Repository
 git_history_of_project Exploring the History of your Git Repository
@@ -33,6 +40,11 @@ r_basics_visualize_data R Basics: Visualizing Data With ggplot2
 r_missing_values Missing Values in R
 r_practice R Practice
 r_reshape_long_wide Reshaping Data in R: Long and Wide Data
+r_summary_stats Summary Statistics in R
+regular_expressions_basics Regular Expressions Basics
+regular_expressions_boundaries_anchors Regular Expressions: Flags, Anchors, and Boundaries
+regular_expressions_groups Regular Expressions: Groups
+regular_expressions_lookaheads Regular Expressions: Lookaheads
 reproducibility Reproducibility, Generalizability, and Reuse
 sql_basics SQL Basics
 sql_intermediate SQL, Intermediate Level
