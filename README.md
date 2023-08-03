@@ -13,13 +13,13 @@ Ultimately a user should be able to create a pathway using section headings and 
 You'll need REDCap API tokens for the following projects:
 
 - DART Pipeline (pid=56668)
-- NALMS (pid=57556)
+- NALMS (pid=61127)
 
 Your API tokens should be saved as environment variables. 
 You can save your tokens as environment variables in R by [editing .Renviron](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html#environment-variables) (for more detailed instructions, see our [REDCap API module](https://liascript.github.io/course/?https://raw.githubusercontent.com/arcus/education_modules/main/using_redcap_api/using_redcap_api.md#20)).
 You'll only need to do this once.
 
-**Be sure to save the NALMS token as `NALMS_57556` and the Pipeline token as `Pipeline_56668`.**
+**Be sure to save the NALMS token as `NALMS_Wave2_61127` and the Pipeline token as `Pipeline_56668`.**
 
 Note: To run the CLI commands here, make sure you're in the main NALMS directory. 
 
@@ -91,7 +91,7 @@ These files will be created in the folder for that pathway (e.g. `test_color`), 
 
 ### Upload instrument zip
 
-In REDCap in the NALMS project (pid=57556), go to Designer, and click the "Upload and Instrument zip file" button.
+In REDCap in the NALMS project (pid=61127), go to Designer, and click the "Upload and Instrument zip file" button.
 
 ![Data Collection Instruments menu showing buttons for adding new forms.](media/pathways_1.png)
 
@@ -160,7 +160,7 @@ The following fields in NALMS come from DART Pipeline:
 
 All of these fields are in the **Basic Info** form in NALMS, which is a form we fill out, not a participant-facing survey. 
 
-**NOTE:** When a learner contacts us to update this information in any of these fields (preferred name, email, dropping out, etc.), it is our responsibility to update that in **both** REDCap projects: DART Pipeline (pid=56668) and NALMS (pid=57556). 
+**NOTE:** When a learner contacts us to update this information in any of these fields (preferred name, email, dropping out, etc.), it is our responsibility to update that in **both** REDCap projects: DART Pipeline (pid=56668) and NALMS (pid=61127). 
 
 ### Running data import scripts
 
@@ -222,12 +222,12 @@ At the request of a learner, use their name and/or email address to find their r
 
 **Find their Record ID**
 
-- In the [NALMS project in REDCap, go to Data, Exports, Reports & Stats](https://redcap.chop.edu/redcap_v13.4.12/DataExport/index.php?pid=57556&report_id=ALL). 
+- In the [NALMS project in REDCap, go to Data, Exports, Reports & Stats](https://redcap.chop.edu/redcap_v13.4.12/DataExport/index.php?pid=61127&report_id=ALL). 
 - Start entering the user's name or email in the search box at the top to filter the records. Make a note of the user's Record ID. 
 
 **Get their survey link**
 
-- Click on [Survey Distribution Tools, and then Survey Invitation Log](https://redcap.chop.edu/redcap_v13.4.12/Surveys/invite_participants.php?email_log=1&pid=57556). 
+- Click on [Survey Distribution Tools, and then Survey Invitation Log](https://redcap.chop.edu/redcap_v13.4.12/Surveys/invite_participants.php?email_log=1&pid=61127). 
 - Click "View past invitations". 
 - Scroll down until you see an invitation for that user's Record ID, and click "View Invite" (a little picture of an envelope) to open the text of their pathway reminder email. 
 - Copy their REDCap survey link from the email. You can now give this to the learner for them to update their pathway progress.
@@ -237,7 +237,7 @@ At the request of a learner, use their name and/or email address to find their r
 Use a learner name and/or email address to find their record in NALMS and DART Pipeline and determine their participation status.
 
 - Follow the instructions above to find the user's Record ID
-- In the [NALMS project in REDCap, select Record Status Dashboard](https://redcap.chop.edu/redcap_v13.4.12/DataEntry/record_status_dashboard.php?pid=57556)
+- In the [NALMS project in REDCap, select Record Status Dashboard](https://redcap.chop.edu/redcap_v13.4.12/DataEntry/record_status_dashboard.php?pid=61127)
 - Click the button for the Basic Info form for that Record ID. Participation status info should all be available there.
 
 ### Creating a brand new NALMS project in REDCap

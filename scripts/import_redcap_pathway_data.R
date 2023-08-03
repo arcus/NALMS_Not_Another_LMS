@@ -136,7 +136,7 @@ redcap_import <- rbind(basic_info, pathway_forms) |>
   dplyr::arrange(record_id)
 
 # use API to import the new data
-formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_61127"),
                  content='record',
                  action='import',
                  format='csv',
