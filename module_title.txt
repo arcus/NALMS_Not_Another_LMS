@@ -13,6 +13,7 @@ data_visualization_in_seaborn Data Visualization in seaborn
 database_normalization Database Normalization
 demystifying_containers Demystifying Containers
 demystifying_geospatial_data Demystifying Geospatial Data
+demystifying_large_language_models Demystifying Large Language Models
 demystifying_machine_learning Demystifying Machine Learning
 demystifying_python Demystifying Python
 demystifying_regular_expressions Demystifying Regular Expressions
@@ -29,6 +30,7 @@ git_intro Intro to Version Control
 git_setup_mac_and_linux Setting Up Git on Mac and Linux
 git_setup_windows Setting Up Git on Windows
 how_to_troubleshoot How to Troubleshoot
+intro_to_nhst Introduction to Null Hypothesis Significance Testing
 learning_to_learn Learning to Learn Data Science
 omics_orientation Omics Orientation
 pandas_transform Transform Data with pandas
