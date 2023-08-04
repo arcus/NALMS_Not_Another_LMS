@@ -1,2 +1,6 @@
 Welcome
-reproducibility
+reproducibility 
+learning_to_learn 
+how_to_troubleshoot 
+directories_and_file_paths 
+data_management_basics 

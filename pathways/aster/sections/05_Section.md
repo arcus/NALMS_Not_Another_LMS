@@ -1,0 +1,6 @@
+Statistics and Machine Learning
+demystifying_machine_learning
+bias_variance_tradeoff
+intro_to_nhst
+r_summary_stats
+statistical_tests

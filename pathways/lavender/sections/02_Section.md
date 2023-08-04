@@ -1,0 +1,9 @@
+Using Python for Data Analysis 
+demystifying_python 
+python_basics_variables_functions_methods
+python_basics_lists_dictionaries 
+python_basics_loops_conditionals 
+python_basics_exercise 
+pandas_transform 
+data_visualization_in_seaborn 
+python_practice 

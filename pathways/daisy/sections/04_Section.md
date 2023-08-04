@@ -1,0 +1,4 @@
+Getting Started with R
+r_basics_introduction 
+r_basics_visualize_data 
+r_basics_transform_data

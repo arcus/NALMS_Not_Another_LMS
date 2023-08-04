@@ -1,0 +1,7 @@
+Using git for Version Control
+git_intro 
+git_setup_mac_and_linux 
+git_setup_windows 
+bash_command_line_101 
+git_creation_and_tracking 
+git_history_of_project 

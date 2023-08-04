@@ -1,0 +1,6 @@
+Text Patterns 
+demystifying_regular_expressions 
+regular_expressions_basics 
+regular_expressions_groups 
+regular_expressions_boundaries_anchors 
+regular_expressions_lookaheads

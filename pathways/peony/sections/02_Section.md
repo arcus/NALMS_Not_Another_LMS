@@ -1,0 +1,9 @@
+Getting Started with R
+r_basics_introduction 
+r_basics_visualize_data 
+r_basics_transform_data 
+how_to_troubleshoot 
+r_missing_values 
+r_reshape_long_wide
+data_visualization_in_ggplot2 
+r_practice
