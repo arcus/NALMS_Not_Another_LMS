@@ -14,7 +14,7 @@ convert_raw_to_label <- function(df, col, token=Sys.getenv("Pipeline_56668")){
                    returnFormat='json'
   )
   response <- httr::POST("https://redcap.chop.edu/api/", body = formData, encode = "form")
-  metadata <- httr::content(response) |> 
+  metadata <- httr::content(response, show_col_types = FALSE) |> 
     dplyr::filter(field_name == col)
   
   choices <- metadata$select_choices_or_calculations
