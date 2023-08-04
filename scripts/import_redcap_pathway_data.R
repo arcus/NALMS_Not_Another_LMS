@@ -28,6 +28,7 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  'fields[5]'='opted_out',
                  'fields[6]'='dropped_out',
                  'fields[7]'='wave',
+                 'fields[8]'='pathway_wave2',
                  'fields[9]'='oss_module_data_sharing_fundamentals_complete',
                  rawOrLabel='raw',
                  rawOrLabelHeaders='raw',
@@ -37,7 +38,7 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  returnFormat='json'
 )
 response <- httr::POST(url, body = formData, encode = "form")
-pipeline <- httr::content(response, show_col_types = FALSE)
+pipeline <- httr::content(response, show_col_types = FALSE) 
 
 # Make pretest_complete info available in all events, not just pre_arm_1
 pretest_completers <- pipeline |>
@@ -48,10 +49,6 @@ pipeline <- pipeline |>
   dplyr::select(-oss_module_data_sharing_fundamentals_complete) |> 
   dplyr::left_join(pretest_completers, by = "record_id")
 
-# add pathways 
-pathway_assignments <- readr::read_csv(here::here("wave2_participants.csv"), show_col_types = FALSE) |> 
-  dplyr::select(record_id, pathway)
-pipeline <- dplyr::left_join(pipeline, pathway_assignments, by="record_id")
 
 # -------------------------------------------------------
 # NOTE: FOR TESTING PURPOSES
@@ -64,9 +61,12 @@ pipeline <- dplyr::left_join(pipeline, pathway_assignments, by="record_id")
 # pipeline <- dplyr::filter(pipeline, record_id < 10)
 # -------------------------------------------------------
 
-pipeline_this_wave <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway)) |> 
+pipeline_this_wave <- pipeline |> 
+  dplyr::filter(wave == 2 & !is.na(pathway_wave2)) |> 
   # convert raw (numeric) pathways from pipeline into their labels
-  convert_raw_to_label(col="pathway")
+  convert_raw_to_label(col="pathway_wave2") |> 
+  # rename pathway_wave2 as just pathway
+  dplyr::rename(pathway=pathway_wave2)
 
 # the complete list of pathways in Pipeline for this wave
 pathways <- unique(pipeline_this_wave$pathway)
