@@ -34,7 +34,10 @@ intro_to_nhst Introduction to Null Hypothesis Significance Testing
 learning_to_learn Learning to Learn Data Science
 omics_orientation Omics Orientation
 pandas_transform Transform Data with pandas
-python_basics_writing_python_code Python Basics: Writing Python Code
+python_basics_variables_functions_methods  Python Basics: Variables, Functions, and Methods
+python_basics_lists_dictionaries Python Basics: Lists and Dictionaries
+python_basics_loops_conditionals Python Basics: Loops and Conditionals
+python_basics_exercise Python Basics: Exercise
 python_practice Python Practice
 r_basics_introduction R Basics: Introduction
 r_basics_transform_data R Basics: Transforming Data With dplyr
