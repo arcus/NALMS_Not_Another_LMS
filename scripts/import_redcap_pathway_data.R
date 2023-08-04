@@ -28,7 +28,6 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  'fields[5]'='opted_out',
                  'fields[6]'='dropped_out',
                  'fields[7]'='wave',
-                 'fields[8]'='pathway',
                  'fields[9]'='oss_module_data_sharing_fundamentals_complete',
                  rawOrLabel='raw',
                  rawOrLabelHeaders='raw',
@@ -49,16 +48,20 @@ pipeline <- pipeline |>
   dplyr::select(-oss_module_data_sharing_fundamentals_complete) |> 
   dplyr::left_join(pretest_completers, by = "record_id")
 
+# add pathways 
+pathway_assignments <- readr::read_csv(here::here("wave2_participants.csv"), show_col_types = FALSE) |> 
+  dplyr::select(record_id, pathway)
+pipeline <- dplyr::left_join(pipeline, pathway_assignments, by="record_id")
 
 # -------------------------------------------------------
 # NOTE: FOR TESTING PURPOSES
 #
-# OVERWRITE THE REAL EMAILS!
-pipeline$email <- "hartmanr1@chop.edu"
-# ADD FAKE PATHWAYS
-pipeline$pathway <- 10
-# LIMIT NUMBER OF PARTICIPANTS
-pipeline <- dplyr::filter(pipeline, record_id < 10)
+# # OVERWRITE THE REAL EMAILS!
+# pipeline$email <- "hartmanr1@chop.edu"
+# # ADD FAKE PATHWAYS
+# pipeline$pathway <- 10
+# # LIMIT NUMBER OF PARTICIPANTS
+# pipeline <- dplyr::filter(pipeline, record_id < 10)
 # -------------------------------------------------------
 
 pipeline_this_wave <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway)) |> 
@@ -69,7 +72,7 @@ pipeline_this_wave <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway)) |>
 pathways <- unique(pipeline_this_wave$pathway)
 
 # get the field names for the whole NALMS project from redcap API
-formData <- list("token"=Sys.getenv("NALMS_Wave2_60956"),
+formData <- list("token"=Sys.getenv("NALMS_Wave2_61127"),
                  content='exportFieldNames',
                  format='csv',
                  returnFormat='json'
