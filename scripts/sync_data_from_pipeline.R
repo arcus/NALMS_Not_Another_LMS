@@ -49,14 +49,14 @@ pipeline <- pipeline |>
   dplyr::select(record_id, first_name, last_name, email, enrolled, opted_out, dropped_out, wave, pathway, pretest_complete)
 
 # -------------------------------------------------------
-# NOTE: FOR TESTING PURPOSES
-#
-# OVERWRITE THE REAL EMAILS!
-pipeline$email <- "rosemhartman@gmail.com"
-# ADD FAKE PATHWAYS
-pipeline$pathway <- 10
-# LIMIT NUMBER OF PARTICIPANTS
-pipeline <- dplyr::filter(pipeline, record_id < 10)
+# # NOTE: FOR TESTING PURPOSES
+# #
+# # OVERWRITE THE REAL EMAILS!
+# pipeline$email <- "rosemhartman@gmail.com"
+# # ADD FAKE PATHWAYS
+# pipeline$pathway <- 10
+# # LIMIT NUMBER OF PARTICIPANTS
+# pipeline <- dplyr::filter(pipeline, record_id < 10)
 # -------------------------------------------------------
 
 pipeline <- pipeline |> 
