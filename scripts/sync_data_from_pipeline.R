@@ -22,7 +22,7 @@ formData <- list("token"=Sys.getenv("Pipeline_56668"),
                  'fields[5]'='opted_out',
                  'fields[6]'='dropped_out',
                  'fields[7]'='wave',
-                 'fields[8]'='pathway',
+                 'fields[8]'='pathway_wave2',
                  'fields[9]'='oss_module_data_sharing_fundamentals_complete',
                  rawOrLabel='raw',
                  rawOrLabelHeaders='raw',
@@ -46,7 +46,7 @@ pipeline <- pipeline |>
   # remove rows that aren't from the screener event
   dplyr::filter(redcap_event_name == "screening_arm_1") |> 
   # only keep fields that are synced with NALMS
-  dplyr::select(record_id, first_name, last_name, email, enrolled, opted_out, dropped_out, wave, pathway, pretest_complete)
+  dplyr::select(record_id, first_name, last_name, email, enrolled, opted_out, dropped_out, wave, pathway_wave2, pretest_complete)
 
 # -------------------------------------------------------
 # # NOTE: FOR TESTING PURPOSES
@@ -61,7 +61,8 @@ pipeline <- pipeline |>
 
 pipeline <- pipeline |> 
   # convert raw (numeric) pathways from Pipeline into their labels
-  convert_raw_to_label(col="pathway")
+  convert_raw_to_label(col="pathway_wave2") |> 
+  dplyr::rename(pathway = pathway_wave2)
 
 # get data from the Basic Info form in NALMS
 # (note we need this so we have the correct list of record_ids, since pipeline has more records than nalms)
