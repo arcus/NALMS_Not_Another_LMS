@@ -152,4 +152,10 @@ formData <- list("token"=Sys.getenv("NALMS_Wave2_61127"),
 )
 response <- httr::POST(url, body = formData, encode = "form")
 result <- httr::content(response, show_col_types = FALSE)
-print(result) 
+
+if(nrow(result) > 0){
+  message("Upload complete!")
+} else {
+  message("\nUpload failed!\n")
+  message(result$error)
+}
