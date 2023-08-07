@@ -78,7 +78,12 @@ nalms <- httr::content(httr::POST(url, body = formData, encode = "form"), show_c
   dplyr::select(-c(redcap_repeat_instrument, redcap_repeat_instance))
 
 # only do the upload if there are fields that don't currently match
-if(all(nalms == dplyr::filter(pipeline, wave == 2 & !is.na(pathway)), na.rm = TRUE)){
+pipeline_wave2 <- dplyr::filter(pipeline, wave == 2 & !is.na(pathway))
+
+check_strings <- all(dplyr::select(nalms, where(is.character)) == dplyr::select(pipeline_wave2, where(is.character)), na.rm = TRUE)
+check_numeric <- all(colSums(dplyr::select(nalms, -where(is.character)), na.rm = TRUE) == colSums(dplyr::select(pipeline_wave2, -where(is.character)), na.rm = TRUE))
+  
+if(check_strings & check_numeric){
   
   message("No need to update NALMS, all fields already match.")
   
