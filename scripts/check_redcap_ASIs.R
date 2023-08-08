@@ -1,6 +1,11 @@
-asi <- readr::read_csv("/Users/hartmanr1/Downloads/NALMSWave2_InvitationLog_2023-08-07_1452.csv", show_col_types = FALSE) |> 
-  dplyr::select(record_id = Record) |> 
-  dplyr::mutate(asi_sent = 1)
+# This script uses the API to get both the record of survey invitations (ASIs) that have gone out 
+# and also the current information on each record which should determine which ASIs should go out.
+# It will print the record_id for any records that look like they should have had a ASI sent but it hasn't gone out yet.
+#
+# This script is only useful for the first round of ASIs, i.e. during the first week of the program.
+
+# print the time so it's easier to look back in the console history and see when this was run
+message(Sys.time()) 
 
 pathways <- c("aster", "azalea", "begonia", "camellia", "crocus", "daffodil", "dahlia", "daisy", "geranium", "iris", "jasmine",
               "lavender", "lilac", "lily", "lotus", "magnolia", "marigold", "peony", "tulip")

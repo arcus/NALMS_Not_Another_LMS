@@ -4,6 +4,9 @@
 
 # API tokens stored in .Renviron https://cran.r-project.org/web/packages/httr/vignettes/secrets.html#environment-variables
 
+# print the time so it's easier to look back in the console history and see when this was run
+message(Sys.time()) 
+
 source(here::here("scripts", "functions.R")) # get custom functions for this project
 
 # get the Basic Info data from Pipeline
