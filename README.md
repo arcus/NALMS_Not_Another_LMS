@@ -194,6 +194,10 @@ In addition to manually updating both NALMS and Pipeline with changes in learner
 This script overwrites the fields that should be synced between Pipeline and NALMS with the current Pipeline data --- that means if you update Basic Info in NALMS and forget to add it to Pipeline as well, it will get erased! 
 This script doesn't touch pathway survey responses, only the fields in the Basic Info form. 
 
+The script first checks the overlapping fields from Pipeline and NALMS and if they all match already, it returns the message `No need to update NALMS, all fields already match`.
+If there are any differences, then it updates NALMS with the data from Pipeline; this update can take quite a while (like 10 min), and often the R script times out while it's working and returns an unhelpful error message. 
+To check that the upload actually completed successfully, simply run the script again and you should see the `No need to update NALMS, all fields already match` message.
+
 You can run it from the command line from within the NALMS main directory: 
 
 ```
@@ -205,9 +209,26 @@ Rscript scripts/sync_data_from_pipeline.R
 ## Updating User Contact Info
 
 Learners can update their contact info with us by filling out the [contact info update form](https://redcap.chop.edu/surveys/?s=C8DL97HYP3PDFDWP) (which is in its own RECap project, pid 59698). 
-This triggers an email to dart@chop.edu with the updated fields. 
+This triggers an email to dart@chop.edu. 
 
 Then it is **our responsibility** to update both DART Pipeline and NALMS with the new info. 
+
+## At the start of a wave
+
+For Wave 2, we allowed some time between the start date of the program and when pretest closed, in an attempt to allow folks more time to get it done so they could stay in the study. 
+The pathway ASIs require pretest completion before they go out, so people who don't have pretest completed before launch day won't get their pathway ASI until they finish it. 
+That means it's important during that first week to run the [script to sync data from Pipeline](#periodic-syncing-script) very frequently, so the pretest completion field stays up to date.
+
+There's a second script, `check_redcap_ASIs.R`, that should also be run frequently during that week to check that the ASIs are correctly being triggered as the data updates. 
+If it detects any records that should have had their ASI go out but it hasn't yet, it will list the record ids for each. 
+
+The workflow for syncing data between Pipeline and NALMS during the first week goes like this: 
+
+- From the main NALMS directory, run the following in the terminal: `Rscript scripts/sync_data_from_pipeline.R`
+- If it hangs and you get an error, re-run it.
+- Then run `Rscript scripts/check_redcap_ASIs.R`
+- If it lists any records that should have had an ASI but it hasn't gone out yet, open REDCap in the browser, go to the Record Status Dashboard and click the "Basic Info" form for each record missing an ASI. You don't need to change anything in the form, just open it and then click "Save and Exit"; touching the record in this way reliably triggers REDCap to send the ASI. 
+- Repeat!
 
 ## Changing admin settings for NALMS
 
