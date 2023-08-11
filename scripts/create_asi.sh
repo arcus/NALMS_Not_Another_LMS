@@ -4,6 +4,8 @@
 
 pathway=$1
 
+pathwayunderscore=$pathway"_pathway"
+
 asi_location=pathways/$pathway/asi.md
 
 ### Note that the [pathway-color] is a field in REDCap, not the directory in this repo
@@ -59,8 +61,8 @@ echo "</table>" >> $asi_location
 
 ### Concluding paragraph about updating progress:
 echo "<p></p>
-<p>As you continue trying out modules, you can check and update your progress in this form:<br />[survey-link:Progress on the $pathway pathway][new-instance]</p>
-<p>You can update this as many times as you want, either by following the link in this email, or by pasting the following url into your browser:<br />[survey-url][new-instance]</p>
+<p>As you continue trying out modules, you can check and update your progress in this form:<br />[survey-link:$pathwayunderscore:Progress on the $pathway pathway][new-instance]</p>
+<p>You can update this as many times as you want, either by following the link in this email, or by pasting the following url into your browser:<br />[survey-url:$pathwayunderscore][new-instance]</p>
 <p>This link is unique to you and should not be forwarded to others.</p>
 <p>Need to update your name or email? Use this link to <a href=https://redcap.chop.edu/surveys/?s=C8DL97HYP3PDFDWP&dart_id=[record-name]>update your contact information with us</a>.</p>" >> $asi_location
 
