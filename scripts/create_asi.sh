@@ -4,6 +4,8 @@
 
 pathway=$1
 
+pathwayunderscore=$pathway"_pathway"
+
 asi_location=pathways/$pathway/asi.md
 
 ### Note that the [pathway-color] is a field in REDCap, not the directory in this repo
@@ -59,8 +61,8 @@ echo "</table>" >> $asi_location
 
 ### Concluding paragraph about updating progress:
 echo "<p></p>
-<p>As you continue trying out modules, you can check and update your progress in this form:<br />[survey-link:Progress on the $pathway pathway][new-instance]</p>
-<p>You can update this as many times as you want, either by following the link in this email, or by pasting the following url into your browser:<br />[survey-url][new-instance]</p>
+<p>As you continue trying out modules, you can check and update your progress in this form:<br />[survey-link:$pathwayunderscore:Progress on the $pathway pathway][new-instance]</p>
+<p>You can update this as many times as you want, either by following the link in this email, or by pasting the following url into your browser:<br />[survey-url:$pathwayunderscore][new-instance]</p>
 <p>This link is unique to you and should not be forwarded to others.</p>
 <p>Need to update your name or email? Use this link to <a href=https://redcap.chop.edu/surveys/?s=C8DL97HYP3PDFDWP&dart_id=[record-name]>update your contact information with us</a>.</p>" >> $asi_location
 
@@ -75,6 +77,6 @@ head -1 templates/asi.csv > $asi_file
 num_recurrence=7
 units_recurrence=DAYS
 max_recurrence=16
-send_date="8/07/2023  08:05:00 AM"
+send_date="8/14/2023  08:05:00 AM"
 
 echo $pathway"_pathway",basic_info,$num_recurrence,$units_recurrence,$max_recurrence,1,"Your Progress on the "$pathway" pathway",\"$(cat $asi_location)\",dart@chop.edu,,AND,"[pathway]=\"$pathway\" and ["$pathway"_complete][last-instance]<>\"2\" and [wave] = \"2\" and [stop_emails]=\"0\" and [pretest_complete]=\"2\"",EXACT_TIME,,,,,after,,,$send_date,EMAIL,,,,,,,,0,1 >> $asi_file
