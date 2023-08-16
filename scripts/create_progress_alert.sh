@@ -8,7 +8,7 @@ pathwayunderscore=$pathway"_pathway"
 progress_alert_location=pathways/$pathway/progress_alert.md
 
 
-echo "<p>Here is your assigned $pathway pathway. We are working to make sure your progress shows up in this email in the future, but for now you can follow the link at the bottom of this email to see you current status and update your progress.</p>" > $progress_alert_location 
+echo "<p>Here is your progress so far on the $pathway pathway as of the time this email was sent:</p>" > $progress_alert_location 
 
 ### Start table of modules:
 
@@ -40,7 +40,7 @@ field_text="<a href=https://liascript.github.io/course/?https://raw.githubuserco
 module_time=$(grep $line module_time.txt | sed "s/^[^ ]* //")
 
 ### I can't make the grammar work to get the right latest instance of the field working in an alert. Sometimes it shows up blank, other times it shows up incorrectly, or merges with other links in weird ways.
-current_status=" " #tried [$field_name][last-instance] and many other combinations with the $pathwayunderscore variable...
+current_status="["$field_name"][last-instance]" #tried [$field_name][last-instance] and many other combinations with the $pathwayunderscore variable...
 echo "<tr>
 <td>$field_text</td>
 <td>$module_time</td>
@@ -66,16 +66,16 @@ echo "<p></p>
 <p>Need to update your name or email? Use this link to <a href=https://redcap.chop.edu/surveys/?s=C8DL97HYP3PDFDWP&dart_id=[record-name]>update your contact information with us</a>.</p>" >> $progress_alert_location
 
 
-# ### Now the text of the email needs to be wrapped in an automated survey invititation csv so that it can be uploaded with all of the appropriate settings:
+### Now the text of the email needs to be wrapped in an automated survey invititation csv so that it can be uploaded with all of the appropriate settings:
 
-# asi_file=pathways/$pathway/asi_$pathway.csv
+alert_file=pathways/$pathway/progress_alert_$pathway.csv
 
-# head -1 templates/asi.csv > $asi_file
+head -1 templates/alerts.csv > $alert_file
 
-# ### Some of the settings we want to be able to change relatively easily:
-# num_recurrence=7
-# units_recurrence=DAYS
-# max_recurrence=1
-# send_date="8/14/2023  08:05:00 AM"
+### Some of the settings we want to be able to change relatively easily:
+num_recurrence=7
+units_recurrence=DAYS
+max_recurrence=14
+send_date="8/21/2023  08:05"
 
-# echo $pathway"_pathway",basic_info,$num_recurrence,$units_recurrence,$max_recurrence,1,"Your Progress on the "$pathway" pathway",\"$(cat $asi_location)\",dart@chop.edu,,AND,"[pathway]=\"$pathway\" and ["$pathway"_complete][last-instance]<>\"2\" and [wave] = \"2\" and [stop_emails]=\"0\" and [pretest_complete]=\"2\"",EXACT_TIME,,,,,after,,,$send_date,EMAIL,,,,,,,,0,1 >> $asi_file
+echo ,$pathway pathway progress - weeks 3-16,LOGIC,,ANY,[pathway]=\'$pathway\' and [stop_emails]"<>"\'1\' and [pretest_complete]=\'2\' and [wave]=\'2\',Y,RECORD,DATE,,,,,,,,$send_date,SCHEDULE,,7,DAYS,$max_recurrence,,EMAIL,,dart@chop.edu,[survey-participant-email],,,,Your progress on the $pathway pathway,\"$(cat $progress_alert_location)\",,{},{},N,,,N >> $alert_file
