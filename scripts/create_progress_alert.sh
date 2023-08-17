@@ -79,4 +79,4 @@ max_recurrence=14
 send_date="8/21/2023  08:05"
 alert_title=$pathway" pathway progress - weeks 3-16"
 
-echo ,$alert_title,LOGIC,,ANY,[pathway]=\'$pathway\' and [stop_emails]"<>"\'1\' and [pretest_complete]=\'2\' and [wave]=\'2\' and [$pathway"_complete"][current-instance] "<>"\'2\',Y,RECORD,DATE,,,,,,,,$send_date,SCHEDULE,,7,DAYS,$max_recurrence,,EMAIL,,dart@chop.edu,[survey-participant-email],,,,Your progress on the $pathway pathway,\"$(cat $progress_alert_location)\",,{},{},N,,,N >> $alert_file
+echo ,$alert_title,LOGIC,,ANY,[pathway]=\'$pathway\' and [stop_emails]"<>"\'1\' and [pretest_complete]=\'2\' and [wave]=\'2\' and [$pathway"_complete"][current-instance]"<>"\'2\',Y,RECORD,DATE,,,,,,,,$send_date,SCHEDULE,,7,DAYS,$max_recurrence,,EMAIL,,dart@chop.edu,[survey-participant-email],,,,Your progress on the $pathway pathway,\"$(cat $progress_alert_location)\",,{},{},N,,,N >> $alert_file
