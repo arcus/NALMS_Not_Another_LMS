@@ -1,6 +1,6 @@
 ### This script creates the "nudge" email text to send participants who have been inactive for at least two weeks
-### It takes a single arguement, the pathway color, and returns
-### html that can be inserted into the REDCap ASI for that pathway.
+### It takes a single argument, the pathway color, and returns
+### html that can be inserted into the REDCap alerts for that pathway.
 
 pathway=$1
 

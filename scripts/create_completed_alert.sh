@@ -1,6 +1,6 @@
 ### This script creates the Congratulations on completing your pathway email text
-### It takes a single arguement, the pathway color, and returns
-### html that can be inserted into the REDCap ASI for that pathway.
+### It takes a single argument, the pathway color, and returns
+### html that can be inserted into the REDCap alert for that pathway.
 
 pathway=$1
 
@@ -60,7 +60,7 @@ done
 echo "</tbody>" >> $alert_location
 echo "</table>" >> $alert_location
 
-### The text from alert_location will then be piped into a csv with all of the survey settings.
+### The text from alert_location will then be piped into a csv with all of the alerts.
 
 head -1 templates/alerts.csv > $alert_csv
 
