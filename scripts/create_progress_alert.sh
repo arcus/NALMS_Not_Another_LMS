@@ -6,7 +6,7 @@
 pathway=$1
 pathwayunderscore=$pathway"_pathway"
 progress_alert_location=pathways/$pathway/progress_alert.md
-
+alert_csv=pathways/$pathway/alerts_$pathway.csv
 
 echo "<p>Here is your progress so far on the $pathway pathway as of the time this email was sent:</p>" > $progress_alert_location 
 
@@ -49,9 +49,7 @@ echo "<tr>
 </tr>" >> $progress_alert_location
 done
 
-
 done
-
 
 
 ### End table of modules:
@@ -67,11 +65,6 @@ echo "<p></p>
 
 
 ### Now the text of the email needs to be wrapped in an alert csv so that it can be uploaded with all of the appropriate settings:
-
-alert_file=pathways/$pathway/progress_alert_$pathway.csv
-
-head -1 templates/alerts.csv > $alert_file
-
 ### Some of the settings we want to be able to change relatively easily:
 num_recurrence=7
 units_recurrence=DAYS
@@ -80,4 +73,6 @@ send_date="8/21/2023 08:05"
 deactivate_date="11/28/2023 08:05"
 alert_title=$pathway" pathway progress - weeks 3-16"
 
-echo ,$alert_title,LOGIC,,ANY,[pathway]=\'$pathway\' and [stop_emails]"<>"\'1\' and [pretest_complete]=\'2\' and [wave]=\'2\' and [$pathway"_complete"][last-instance]"<>"\'2\',Y,RECORD,DATE,,,,,,,,$send_date,SCHEDULE,,7,DAYS,$max_recurrence,$deactivate_date,EMAIL,,dart@chop.edu,[survey-participant-email],,,,Your progress on the $pathway pathway,\"$(cat $progress_alert_location)\",,{},{},N,,,N >> $alert_file
+### NOTE: This script adds additional lines to the existing alerts.csv file, and therefore must be run AFTER create_completed_alert.sh
+
+echo ,$alert_title,LOGIC,,ANY,[pathway]=\'$pathway\' and [stop_emails]"<>"\'1\' and [pretest_complete]=\'2\' and [wave]=\'2\' and [$pathway"_complete"][last-instance]"<>"\'2\',Y,RECORD,DATE,,,,,,,,$send_date,SCHEDULE,,7,DAYS,$max_recurrence,$deactivate_date,EMAIL,,dart@chop.edu,[survey-participant-email],,,,Your progress on the $pathway pathway,\"$(cat $progress_alert_location)\",,{},{},N,,,N >> $alert_csv
