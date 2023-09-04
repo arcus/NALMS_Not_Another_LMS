@@ -3,7 +3,7 @@ NALMS is the REDCap project intended to deliver the DART learning pathways to le
 
 The purpose of this repository is to create the files needed for that project, including:
 - zip files of REDCap Forms
-- ASI (Automated Survey Invitations)
+- csv files of REDCap alerts
 - scripts for the REDCap API to automate tasks in REDCap whenever possible
 
 Ultimately a user should be able to create a pathway using section headings and module names, and then generate all files needed to create that pathway on REDCap.
@@ -23,7 +23,7 @@ You'll only need to do this once.
 
 Note: To run the CLI commands here, make sure you're in the main NALMS directory. 
 
-Note that if you want to send notifications and ASIs from a shared email (e.g. the dart email), you can [add that email to your redcap account](https://www.research.chop.edu/announcements/adding-another-email-address-to-your-redcap-profile) to be able to use it. This needs to be done for at least one person on the project.  
+Note that if you want to send notifications from a shared email (e.g. the dart email), you can [add that email to your redcap account](https://www.research.chop.edu/announcements/adding-another-email-address-to-your-redcap-profile) to be able to use it. This needs to be done for at least one person on the project.  
 
 ### Updating `module_times.txt`
 
@@ -72,7 +72,7 @@ To create the files for the `test_color` pathway, run this bash script from the 
 bash scripts/create_REDCap_files.sh test_color
 ```
 
-This will create the zip file for the instrument that can be uploaded directly to REDCap, as well as the automated survey invitations and the alert for when a user has completed the pathway.
+This will create the zip file for the instrument that can be uploaded directly to REDCap, as well as the alerts for the pathway.
 
 These files will be created in the folder for that pathway (e.g. `test_color`), with the pathway name you used instead of `test_color`.
 
@@ -84,7 +84,6 @@ These files will be created in the folder for that pathway (e.g. `test_color`), 
             ├── 1_First_Section.md
             ├── 2_Second_Section.md
             └── 3_Third_Section.md
-        └── asi_test_color.csv      (ASI file to upload to REDCap)
         └── alerts_test_color.csv              (alert file to upload to REDCap)
         └── test_color.zip          (instrument zip to upload to REDCap)
 ```
@@ -107,15 +106,6 @@ Rscript scripts/make_pathways_repeating.R
 
 After running this, you should see a little green circle arrow appear next to the "enabled as survey" badge in REDCap (you may need to refresh the page).
 
-### Upload automated survey invitation (ASI)
-
-On the same Designer page in REDCap, click the "Auto invitations options" under "Survey Options"
-
-![Survey Options menu.](media/pathways_2.png)
-
-Select "upload automated survey invitations settings (csv)" and select "Choose and upload csv".
-Upload the csv called "asi_test_color.csv" in your pathway's directory.
-
 ### Upload alerts
 
 In REDCap, go to Alerts & Notifications.
@@ -124,19 +114,23 @@ Click "Upload or download alerts", and then "Upload Alerts (CSV)".
 ![Alerts & Notifications menu.](media/pathways_3.png)
 
 Select "alerts_test_color.csv" in your pathway's directory.
-This will upload **15** alerts for your pathway: 14 to nudge participants (weekly, on weeks 3-16 inclusive) who are inactive for at least two weeks, and 1 to congratulate participants who finish their pathways.
+This will upload **16** alerts for your pathway: 
+
+- 1 to congratulate participants who finish their pathways
+- 14 to nudge participants (weekly, on weeks 3-16 inclusive) who are inactive for at least two weeks
+- 1 to update participants each week on their progress on their pathway (this replaces ASIs we had used previously)
 
 ### Check that pathway is correctly set up in REDCap
 
-**On the Designer page**: check that your pathway exists, is repeating, and has an active automated survey invitation:
+**On the Designer page**: check that your pathway exists, and is repeating:
 
 ![Test Color pathway survey.](media/pathways_4.png)
 
-You can click on the pathway name to check that all questions are present. The "enabled as survey" column should have both a green badge and a green circular arrow. The text on the "Automated Invitations" button should be green, indicating the survey invitation is active. Click on that button to check that the text and other settings are correct.
+You can click on the pathway name to check that all questions are present. The "enabled as survey" column should have both a green badge and a green circular arrow. 
 
-**On the Alerts & Notifications page**: find the alerts for "test_color" pathway (or whichever pathway you are currently checking). There should be **15** total alerts, one called "Completed test_color pathway" and 14 called "Inactive nudge test_color pathway Week #" for Weeks 3-16. 
+**On the Alerts & Notifications page**: find the alerts for "test_color" pathway (or whichever pathway you are currently checking). There should be **16** total alerts, one called "Completed test_color pathway", 14 called "Inactive nudge test_color pathway Week #" for Weeks 3-16, and one called "test_color pathway progress". 
 
-Make sure there are exactly **15** alerts for your new pathway, and no more (i.e. that you didn't accidentally re-upload existing alerts).
+Make sure there are exactly **16** alerts for your new pathway, and no more (i.e. that you didn't accidentally re-upload existing alerts).
 
 You can click "Edit" to verify that the settings for any given alert are correct, or use the "preview" button to see the alert text.
 
@@ -216,7 +210,7 @@ Then it is **our responsibility** to update both DART Pipeline and NALMS with th
 ## At the start of a wave
 
 For Wave 2, we allowed some time between the start date of the program and when pretest closed, in an attempt to allow folks more time to get it done so they could stay in the study. 
-The pathway ASIs require pretest completion before they go out, so people who don't have pretest completed before launch day won't get their pathway ASI until they finish it. 
+The pathway progress emails require pretest completion before they go out, so people who don't have pretest completed before launch day won't get their pathway progress email until they finish it. 
 That means it's important during that first week to run the [script to sync data from Pipeline](#periodic-syncing-script) very frequently, so the pretest completion field stays up to date.
 
 There's a second script, `check_redcap_ASIs.R`, that should also be run frequently during that week to check that the ASIs are correctly being triggered as the data updates. 
@@ -248,9 +242,9 @@ At the request of a learner, use their name and/or email address to find their r
 
 **Get their survey link**
 
-- Click on [Survey Distribution Tools, and then Survey Invitation Log](https://redcap.chop.edu/redcap_v13.4.12/Surveys/invite_participants.php?email_log=1&pid=61127). 
-- Click "View past invitations". 
-- Scroll down until you see an invitation for that user's Record ID, and click "View Invite" (a little picture of an envelope) to open the text of their pathway reminder email. 
+- Click on [Alerts & Notifications, and then Notification Log](https://redcap.chop.edu/redcap_v13.8.3/index.php?pid=61127&route=AlertsController:setup&log=1). 
+- Click "View past notifications". 
+- Scroll down until you see a progress update alert for that user's Record ID, and click "View Notification" (a little picture of an envelope) to open the text of their pathway reminder email. 
 - Copy their REDCap survey link from the email. You can now give this to the learner for them to update their pathway progress.
 
 ### Check learner status

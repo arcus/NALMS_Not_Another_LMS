@@ -68,10 +68,10 @@ echo "<p></p>
 ### Some of the settings we want to be able to change relatively easily:
 num_recurrence=7
 units_recurrence=DAYS
-max_recurrence=14
+max_recurrence=16
 send_date="8/21/2023 08:05"
 deactivate_date="11/28/2023 08:05"
-alert_title=$pathway" pathway progress - weeks 3-16"
+alert_title=$pathway" pathway progress"
 
 ### NOTE: This script adds additional lines to the existing alerts.csv file, and therefore must be run AFTER create_completed_alert.sh
 
