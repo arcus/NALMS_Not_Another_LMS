@@ -66,7 +66,7 @@ echo "<p></p>
 <p>Need to update your name or email? Use this link to <a href=https://redcap.chop.edu/surveys/?s=C8DL97HYP3PDFDWP&dart_id=[record-name]>update your contact information with us</a>.</p>" >> $progress_alert_location
 
 
-### Now the text of the email needs to be wrapped in an automated survey invititation csv so that it can be uploaded with all of the appropriate settings:
+### Now the text of the email needs to be wrapped in an alert csv so that it can be uploaded with all of the appropriate settings:
 
 alert_file=pathways/$pathway/progress_alert_$pathway.csv
 
