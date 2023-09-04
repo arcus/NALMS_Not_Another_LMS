@@ -1,7 +1,7 @@
 ### This script creates the pathway progress alert
 ### This is because the ASIs are not working well and we need these to go out as alerts instead.
-### It takes a single arguement, the pathway color, and returns
-### html that can be inserted into the REDCap ASI for that pathway.
+### It takes a single argument, the pathway color, and returns
+### html that can be inserted into the REDCap alert for that pathway.
 
 pathway=$1
 pathwayunderscore=$pathway"_pathway"
